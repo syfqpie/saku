@@ -1,0 +1,73 @@
+{% extends "account/email/base_message.html" %}
+{% block content %}
+{% autoescape off %}
+
+<table role="presentation" class="main">
+    <tr>
+        <td class="wrapper">
+            <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td style="text-align: center;">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2279/2279398.png"
+                            width="100" alt="thanks" />
+                        <h3>
+                            <strong>
+                                Thank you for joining Saku!
+                            </strong>
+                        </h3>
+
+                        <p>
+                            Hey there! You have registered this email to
+                            Saku. Click the button below to verify your
+                            email and get started.
+                        </p>
+
+                        <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
+                            <tbody>
+                                <tr>
+                                    <td align="center">
+                                        <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <a href="{{ action_url }}" target="_blank">
+                                                            Verify now
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <p style="margin-bottom: 0;">
+                            Cheers,
+                        </p>
+
+                        <p>
+                            The {{ site_name }} team
+                        </p>
+
+                        <p style="margin-bottom: 0;">
+                            <small>
+                                You're receiving this email because you recently
+                                created a new account.
+                            </small>
+                        </p>
+
+                        <p style="margin-bottom: 0;">
+                            <small>
+                                If this wasn't you, please ignore this email.
+                            </small>
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+{% endautoescape %}
+{% endblock %}
