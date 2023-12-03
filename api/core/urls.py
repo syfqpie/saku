@@ -4,8 +4,12 @@ from django.urls import re_path
 
 from rest_framework_extensions.routers import ExtendedDefaultRouter
 
+from profiles.urls import profiles_router
+
 
 router = ExtendedDefaultRouter()
+
+router.register(*profiles_router)
 
 urlpatterns = [
     re_path(r"admin/", admin.site.urls),
