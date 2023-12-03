@@ -1,6 +1,5 @@
 import uuid
 
-from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.core.mail import send_mail
@@ -27,7 +26,7 @@ class User(AbstractBaseUser):
             "unique": _("A user with that username already exists."),
         },
     )
-    email = models.EmailField(_("email address"), unique=True, null=True)
+    email = models.EmailField(_("email address"), null=True)
     is_active = models.BooleanField(_("is active?"), default=True)
 
     # Log
