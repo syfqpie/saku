@@ -7,9 +7,6 @@ from decouple import config
 # Build paths inside the project like this: BASE_DIR / "subdir".
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
-
 SECRET_KEY = config("SECRET_KEY") # keep the secret key used in production secret!
 DEBUG = config("DEBUG", default=False, cast=bool) # no debug in production!
 USE_MAILHOG = config("MAILHOG", default=False, cast=bool) # no in production!
@@ -27,6 +24,14 @@ INSTALLED_APPS = [
     "django.contrib.sites",
 
     "rest_framework",
+    "rest_framework.authtoken",
+    "allauth",
+    "allauth.account",
+    "dj_rest_auth",
+    "dj_rest_auth.registration",
+    "django_filters",
+
+    "users",
 ]
 
 MIDDLEWARE = [
@@ -117,3 +122,57 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Authentication backends
+# https://docs.djangoproject.com/en/4.2/topics/auth/customizing/#specifying-authentication-backends
+
+AUTHENTICATION_BACKENDS = [
+    # `allauth` specific authentication methods, such as login by e-mail
+    "allauth.account.auth_backends.AuthenticationBackend",
+]
+
+# Sites framework
+# https://docs.djangoproject.com/en/4.2/ref/contrib/sites/
+# refer to <root>/api/users/migrations/0001_initial.py
+SITE_ID = 1
+DEFAULT_SITE_DOMAIN = config("SITE_DOMAIN", "saku.cendol.dev")
+DEFAULT_SITE_NAME = config("SITE_NAME", "Saku")
+
+# Django Rest Framework
+# https://www.django-rest-framework.org/
+
+DEFAULT_RENDERER_CLASSES = [
+    "rest_framework.renderers.JSONRenderer",
+]
+
+if DEBUG:
+    DEFAULT_RENDERER_CLASSES.append("rest_framework.renderers.BrowsableAPIRenderer")
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ],
+    "DEFAULT_PARSER_CLASSES": [
+        "rest_framework.parsers.JSONParser",
+        "rest_framework.parsers.FormParser",
+        "rest_framework.parsers.MultiPartParser",
+    ],
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticated",
+    ],
+    "DEFAULT_RENDERER_CLASSES": DEFAULT_RENDERER_CLASSES,
+    "TEST_REQUEST_DEFAULT_FORMAT": "json",
+}
+
+# Dj-Rest-Auth
+# https://dj-rest-auth.readthedocs.io/en/latest/configuration.html
+
+REST_AUTH = {
+    "OLD_PASSWORD_FIELD_ENABLED": True,
+    "SESSION_LOGIN": False,
+    "USE_JWT": True,
+    # "JWT_SERIALIZER_WITH_EXPIRATION": "auth.tokens.CoreJWTSerializer",
+    # "JWT_TOKEN_CLAIMS_SERIALIZER": "auth.tokens.CoreTokenObtainPairSerializer",
+    "JWT_AUTH_HTTPONLY": False, # TODO: check back when doing impementation
+    "JWT_AUTH_RETURN_EXPIRATION": True,
+}
