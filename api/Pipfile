@@ -1,0 +1,21 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+djangorestframework = "==3.14.0"
+markdown = "==3.4.4"
+django-filter = "==23.2"
+python-decouple = "==3.8"
+dj-rest-auth = {version = "==4.0.1", extras = ["with_social"]}
+djangorestframework-simplejwt = "==5.2.2"
+django-cors-headers = "==4.2.0"
+drf-extensions = "==0.7.1"
+pillow = "==10.0.0"
+mkdocs-material = "==9.*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.11"
