@@ -160,6 +160,7 @@ if DEBUG:
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
+        "dj_rest_auth.jwt_auth.JWTCookieAuthentication",
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ],
     "DEFAULT_PARSER_CLASSES": [
@@ -183,10 +184,11 @@ REST_AUTH = {
     "USE_JWT": True,
     "JWT_SERIALIZER_WITH_EXPIRATION": "auth.tokens.JWTSerializer",
     "JWT_TOKEN_CLAIMS_SERIALIZER": "auth.tokens.TokenObtainPairSerializer",
-    "JWT_AUTH_HTTPONLY": True, # TODO: check back when doing impementation
+    "JWT_AUTH_HTTPONLY": False, # TODO: check back when doing impementation
     "JWT_AUTH_RETURN_EXPIRATION": True,
     "JWT_AUTH_COOKIE": "saku-access",
-    "JWT_AUTH_REFRESH_COOKIE": "saku-refresh"
+    "JWT_AUTH_REFRESH_COOKIE": "saku-refresh",
+    "JWT_AUTH_COOKIE_USE_CSRF": False
 }
 
 # Allauth
@@ -233,3 +235,4 @@ SIMPLE_JWT = {
 
 CORS_ALLOWED_ORIGINS = config("ALLOWED_ORIGINS", default="", cast=lambda v: [s.strip() for s in v.split(",")])
 CORS_EXPOSE_HEADERS = ["Content-Disposition"]
+CORS_ALLOW_CREDENTIALS = True
