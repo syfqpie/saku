@@ -22,7 +22,10 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "app",
+            "prefix": [
+              "app",
+              "sk"
+            ],
             "style": "camelCase"
           }
         ],
