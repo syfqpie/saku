@@ -21,7 +21,7 @@ export class LoginComponent extends LoadableComponent implements OnInit, OnDestr
 		password: new FormControl(null)
 	})
 	formMessages = {
-		username: AuthFormMessage.email,
+		username: AuthFormMessage.username,
 		password: AuthFormMessage.password
 	}
 

@@ -11,47 +11,63 @@
 
     <div class="">
         <form [formGroup]="form">
-            <div class="relative mb-3">
-                <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                    <i class="ri-user-4-line text-zinc-500"></i>
+            <div class="mb-3">
+                <div class="relative">
+                    <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                        <i class="ri-user-4-line text-zinc-500"></i>
+                    </div>
+    
+                    <input
+                        type="text"
+                        class="sk-form-auth sk-form-w-icon"
+                        placeholder="Username"
+                        skInput="sm"
+                        formControlName="username"
+                        [ngClass]="{
+                            'sk-form-invalid':
+                                form.controls['username'].errors &&
+                                (
+                                    form.controls['username'].dirty ||
+                                    form.controls['username'].touched
+                                )
+                        }" />
                 </div>
-
-                <input
-                    type="text"
-                    class="sk-form-auth sk-form-w-icon"
-                    placeholder="Username"
-                    skInput="sm"
-                    formControlName="username"
-                    [ngClass]="{
-                        'sk-form-invalid':
-                            form.controls['username'].errors &&
-                            (
-                                form.controls['username'].dirty ||
-                                form.controls['username'].touched
-                            )
-                    }" />
+    
+                <sk-form-message
+                    [control]="form.controls['username']"
+                    [messages]="formMessages.username"
+                    controlName="username" /> 
             </div>
 
-            <div class="relative mb-3">
-                <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                    <i class="ri-key-2-line text-zinc-500"></i>
+            <div class="mb-3">
+                <div class="relative">
+                    <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                        <i class="ri-key-2-line text-zinc-500"></i>
+                    </div>
+    
+                    <input
+                        type="password"
+                        class="sk-form-auth sk-form-w-icon"
+                        placeholder="Password"
+                        skInput="sm"
+                        formControlName="password"
+                        [ngClass]="{
+                            'sk-form-invalid':
+                                form.controls['password'].errors &&
+                                (
+                                    form.controls['password'].dirty ||
+                                    form.controls['password'].touched
+                                )
+                        }" />
                 </div>
 
-                <input
-                    type="password"
-                    class="sk-form-auth sk-form-w-icon"
-                    placeholder="Password"
-                    skInput="sm"
-                    formControlName="password"
-                    [ngClass]="{
-                        'sk-form-invalid':
-                            form.controls['password'].errors &&
-                            (
-                                form.controls['password'].dirty ||
-                                form.controls['password'].touched
-                            )
-                    }" />
+                <sk-form-message
+                    [control]="form.controls['password']"
+                    [messages]="formMessages.password"
+                    controlName="password" /> 
             </div>
+
+            
 
             <sk-button
                 [buttonTpl]="buttonTpl"
