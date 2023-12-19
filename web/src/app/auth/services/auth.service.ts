@@ -42,10 +42,26 @@ export class AuthService {
 	 * @param body.password1 - password
 	 * @param body.password2 - confirm password
 	 *
-	 * @returns A registration response (JWT) {@link DetailResponse}
+	 * @returns A detail response {@link DetailResponse}
 	 */
 	public register(body: object): Observable<object> {
 		const urlTemp = `${BASE_URL}registration/`
+		return this.http.post(urlTemp, body)
+			.pipe(tap(() => {
+				// Save response TODO
+			}))
+	}
+
+	/**
+	 * Verify account
+	 * 
+	 * @param body - payload
+	 * @param body.key - verification key key
+	 *
+	 * @returns A detail response {@link DetailResponse}
+	 */
+	public verifyAccount(body: object): Observable<object> {
+		const urlTemp = `${BASE_URL}registration/verify-email/`
 		return this.http.post(urlTemp, body)
 			.pipe(tap(() => {
 				// Save response TODO

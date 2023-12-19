@@ -7,12 +7,14 @@ import { SharedModule } from '../shared/shared.module';
 
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { VerificationComponent } from './verification/verification.component';
 
 @NgModule({
 	declarations: [
 		AuthComponent,
 		LoginComponent,
 		RegisterComponent,
+		VerificationComponent
 	],
 	imports: [
 		RouterModule.forChild(AuthRoutes),
