@@ -13,16 +13,27 @@ import { CompoSize, CompoSizes } from 'src/app/shared/models/component.model';
 			'sk-btn-md': size === CompoSizes.MD,
 			'sk-btn-lg': size === CompoSizes.LG,
 			'sk-btn-xl': size === CompoSizes.XL
-		}">
-     	<ng-container
-			*ngTemplateOutlet="buttonTpl">
+		}"
+		[disabled]="disabled">
+		<ng-container *ngIf="spinning; else notSpinning">
+			<i class="ri-loader-3-line animate-spin block"></i>
 		</ng-container>
+
+		<ng-template #notSpinning>
+			<ng-container
+				*ngTemplateOutlet="buttonTpl">
+			</ng-container>
+		</ng-template>
     </button>
   `,
 	styles: [
 	]
 })
 export class ButtonComponent {
+	@Input()
+	disabled = false
+
+	@Input()
 	spinning = false
 
 	@Input()
