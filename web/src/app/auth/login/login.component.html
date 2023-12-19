@@ -1,0 +1,69 @@
+<div>
+    <div class="col-span-12">
+        <p class="mb-0">
+            Welcome back!
+        </p>
+
+        <p class="mb-4">
+            Log in to your account
+        </p>
+    </div>
+
+    <div class="">
+        <form [formGroup]="form">
+            <div class="relative mb-3">
+                <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                    <i class="ri-user-4-line text-zinc-500"></i>
+                </div>
+
+                <input
+                    type="text"
+                    class="sk-form-auth sk-form-w-icon"
+                    placeholder="Username"
+                    skInput="sm"
+                    formControlName="username"
+                    [ngClass]="{
+                        'sk-form-invalid':
+                            form.controls['username'].errors &&
+                            (
+                                form.controls['username'].dirty ||
+                                form.controls['username'].touched
+                            )
+                    }" />
+            </div>
+
+            <div class="relative mb-3">
+                <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                    <i class="ri-key-2-line text-zinc-500"></i>
+                </div>
+
+                <input
+                    type="password"
+                    class="sk-form-auth sk-form-w-icon"
+                    placeholder="Password"
+                    skInput="sm"
+                    formControlName="password"
+                    [ngClass]="{
+                        'sk-form-invalid':
+                            form.controls['password'].errors &&
+                            (
+                                form.controls['password'].dirty ||
+                                form.controls['password'].touched
+                            )
+                    }" />
+            </div>
+
+            <sk-button
+                [buttonTpl]="buttonTpl"
+                [isFull]="true"
+                [spinning]="isLoading"
+                [disabled]="isLoading"
+                size="sm"
+                (click)="doPreLogin()">
+                <ng-template #buttonTpl>
+                    Login
+                </ng-template>
+            </sk-button>
+        </form>
+    </div>
+</div>
