@@ -4,12 +4,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { ButtonComponent } from './components/button/button.component';
+import { FormMessageComponent } from './components/forms/form-message/form-message.component';
 import { InputDirective } from './directives/forms/input.directive';
 
 @NgModule({
 	declarations: [
 		ButtonComponent,
-		InputDirective
+		FormMessageComponent,
+		InputDirective,
 	],
 	imports: [
 		CommonModule
@@ -20,7 +22,8 @@ import { InputDirective } from './directives/forms/input.directive';
 		ReactiveFormsModule,
 		HttpClientModule,
 		ButtonComponent,
-		InputDirective
+		FormMessageComponent,
+		InputDirective,
 	]
 })
 export class SharedModule { }

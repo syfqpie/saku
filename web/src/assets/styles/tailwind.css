@@ -51,5 +51,5 @@
 	@apply !border-red-600 focus:border-red-600 focus:ring-red-600/50;
 }
 .sk-form.sk-form-valid {
-	@apply !border-green-600 focus:border-green-600 focus:ring-green-600/50;
+	@apply text-xs !border-green-600 focus:border-green-600 focus:ring-green-600/50;
 }

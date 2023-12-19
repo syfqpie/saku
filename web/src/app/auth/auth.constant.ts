@@ -2,6 +2,7 @@ import { FormMessage } from '../shared/models/base.model';
 
 interface AuthFormType {
 	email: FormMessage[],
+	username: FormMessage[],
 	password: FormMessage[],
 	confirmPassword: FormMessage[],
 	uid: FormMessage[],
@@ -12,6 +13,9 @@ export const AuthFormMessage: AuthFormType = {
 	'email': [
 		{ type: 'required', message: 'Email address is required' },
 		{ type: 'email', message: 'Enter a valid email address' }
+	],
+	'username': [
+		{ type: 'required', message: 'Username is required' }
 	],
 	'password': [
 		{ type: 'required', message: 'Password is required' },
