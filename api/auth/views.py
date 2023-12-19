@@ -129,6 +129,7 @@ class VerifyEmailView(RestVerifyEmailView):
     """
     def post(self, request, *args, **kwargs):
         """ Override to append custom validations and actions """
+        # TODO: improve to allow login after verify
         
         # Get email address instance
         serializer = self.get_serializer(data=request.data)
