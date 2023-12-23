@@ -29,7 +29,7 @@ export class AuthService {
 		const urlTemp = `${BASE_URL}login/`
 		return this.http.post(urlTemp, body)
 			.pipe(tap(() => {
-				// Save response TODO
+				// noop
 			}))
 	}
 
@@ -48,7 +48,7 @@ export class AuthService {
 		const urlTemp = `${BASE_URL}registration/`
 		return this.http.post(urlTemp, body)
 			.pipe(tap(() => {
-				// Save response TODO
+				// noop
 			}))
 	}
 
@@ -64,7 +64,7 @@ export class AuthService {
 		const urlTemp = `${BASE_URL}registration/verify-email/`
 		return this.http.post(urlTemp, body)
 			.pipe(tap(() => {
-				// Save response TODO
+				// noop
 			}))
 	}
 
@@ -80,7 +80,7 @@ export class AuthService {
 		const urlTemp = `${BASE_URL}password/reset/`
 		return this.http.post(urlTemp, body)
 			.pipe(tap(() => {
-				// Save response TODO
+				// noop
 			}))
 	}
 
@@ -99,7 +99,7 @@ export class AuthService {
 		const urlTemp = `${BASE_URL}password/reset/confirm/`
 		return this.http.post(urlTemp, body)
 			.pipe(tap(() => {
-				// Save response TODO
+				// noop
 			}))
 	}
 
@@ -112,7 +112,7 @@ export class AuthService {
 		const urlTemp = `${BASE_URL}token/verify/`
 		return this.http.post(urlTemp, body)
 			.pipe(tap(() => {
-				// Save response TODO
+				// noop
 			}))
 	}
 
@@ -125,7 +125,7 @@ export class AuthService {
 		const urlTemp = `${BASE_URL}token/refresh/`
 		return this.http.post(urlTemp, {})
 			.pipe(tap(() => {
-				// Save response TODO
+				// noop
 			}))
 	}
 }
