@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
+import { invalidateCookies } from 'src/app/shared/utils/api';
+import { AUTH_PREFIX } from 'src/app/shared/constants/prefixes.constant';
 
-const BASE_URL = `${environment.baseUrl}auth/`
+const BASE_URL = `${environment.baseUrl}${AUTH_PREFIX}/`
 
 
 @Injectable({
@@ -13,7 +16,8 @@ const BASE_URL = `${environment.baseUrl}auth/`
 export class AuthService {
 
 	constructor(
-		private http: HttpClient
+		private http: HttpClient,
+		private router: Router
 	) { }
 
 	/**
@@ -127,5 +131,10 @@ export class AuthService {
 			.pipe(tap(() => {
 				// noop
 			}))
+	}
+
+	public logout(): Promise<boolean> {
+		invalidateCookies()
+		return this.router.navigate(['/auth', 'login'])
 	}
 }
