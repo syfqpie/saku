@@ -85,7 +85,7 @@ class PasswordResetConfirmView(RestPasswordResetConfirmView):
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
         response = Response(
-            {'detail': _('Password has been reset with the new password.')},
+            {"detail": _("Password has been reset with the new password.")},
         )
 
         if api_settings.USE_JWT and account_settings.LOGIN_ON_PASSWORD_RESET:
