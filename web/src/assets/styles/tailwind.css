@@ -21,9 +21,15 @@
 .sk-btn.sk-btn-xl {
 	@apply px-6 py-3.5 text-base;
 }
+.sk-btn.sk-btn-default {
+    @apply focus:outline-none border focus:ring-2 focus:ring-cyan-600/50
+	border-zinc-800 enabled:hover:border-cyan-600 bg-zinc-800/30
+	enabled:hover:text-zinc-900 enabled:hover:bg-cyan-600/50 disabled:bg-zinc-800/80
+	disabled:border-zinc-800/90 disabled:text-zinc-400/60 disabled:cursor-not-allowed;
+}
 .sk-btn.sk-btn-auth {
 	@apply focus:outline-none border focus:ring-2 focus:ring-cyan-600/50 bg-zinc-800
-    text-zinc-400 border-zinc-600 enabled:hover:border-cyan-600
+    border-zinc-600 enabled:hover:border-cyan-600
 	enabled:hover:text-white enabled:hover:bg-cyan-600/50 disabled:bg-zinc-800/80
 	disabled:border-zinc-600/60 disabled:text-zinc-400/60;
 }
