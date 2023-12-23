@@ -21,8 +21,7 @@ export class ProfilesService {
 		this.profile = this.profileSubject.asObservable();
 	}
 
-	/**
-	 * Get attached profile
+	/** Get attached profile
 	 *
 	 * @returns user attached profile {@link Profile}
 	 */
