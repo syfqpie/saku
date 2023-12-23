@@ -102,4 +102,30 @@ export class AuthService {
 				// Save response TODO
 			}))
 	}
+
+	/**
+	 * Verify token
+	 *
+	 * @returns A detail response {@link DetailResponse}
+	 */
+	public verifyToken(body: object): Observable<object> {
+		const urlTemp = `${BASE_URL}token/verify/`
+		return this.http.post(urlTemp, body)
+			.pipe(tap(() => {
+				// Save response TODO
+			}))
+	}
+
+	/**
+	 * Refresh token
+	 *
+	 * @returns A detail response {@link DetailResponse}
+	 */
+	public refreshToken(): Observable<object> {
+		const urlTemp = `${BASE_URL}token/refresh/`
+		return this.http.post(urlTemp, {})
+			.pipe(tap(() => {
+				// Save response TODO
+			}))
+	}
 }
