@@ -67,4 +67,39 @@ export class AuthService {
 				// Save response TODO
 			}))
 	}
+
+	/**
+	 * Reset account password
+	 * 
+	 * @param body - payload
+	 * @param body.email - user registered email
+	 *
+	 * @returns A detail response {@link DetailResponse}
+	 */
+	public resetPassword(body: object): Observable<object> {
+		const urlTemp = `${BASE_URL}password/reset/`
+		return this.http.post(urlTemp, body)
+			.pipe(tap(() => {
+				// Save response TODO
+			}))
+	}
+
+	/**
+	 * Confirm reset account password
+	 * 
+	 * @param body - payload
+	 * @param body.uid - received uid
+	 * @param body.token - received token
+	 * @param body.new_password1 - user new password
+	 * @param body.new_password2 - user confirm new password
+	 *
+	 * @returns A detail response {@link DetailResponse}
+	 */
+	public confirmResetPassword(body: object): Observable<object> {
+		const urlTemp = `${BASE_URL}password/reset/confirm/`
+		return this.http.post(urlTemp, body)
+			.pipe(tap(() => {
+				// Save response TODO
+			}))
+	}
 }
