@@ -5,6 +5,8 @@ from django.utils.translation import gettext_lazy as _
 
 from rest_framework import status
 from rest_framework.response import Response
+from allauth.account import app_settings as account_settings
+from dj_rest_auth.app_settings import api_settings
 from dj_rest_auth.views import (
     PasswordChangeView as RestPasswordChangeView,
     PasswordResetView as RestPasswordResetView,
@@ -19,6 +21,7 @@ from dj_rest_auth.registration.views import (
 )
 
 from auth.serializers import PasswordResetSerializer
+from auth.utils import set_jwt_cookies
 
 
 class LoginView(RestLoginView):
@@ -77,6 +80,18 @@ class PasswordResetConfirmView(RestPasswordResetConfirmView):
     Returns:
         dict: detail message
     """
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.save()
+        response = Response(
+            {'detail': _('Password has been reset with the new password.')},
+        )
+
+        if api_settings.USE_JWT and account_settings.LOGIN_ON_PASSWORD_RESET:
+            set_jwt_cookies(user, response)
+
+        return response
 
 
 class RegisterView(RestRegisterView):
@@ -129,7 +144,6 @@ class VerifyEmailView(RestVerifyEmailView):
     """
     def post(self, request, *args, **kwargs):
         """ Override to append custom validations and actions """
-        # TODO: improve to allow login after verify
         
         # Get email address instance
         serializer = self.get_serializer(data=request.data)
@@ -147,7 +161,12 @@ class VerifyEmailView(RestVerifyEmailView):
         user = User.objects.get(email=confirmation.email_address.email)
         user.verified_at = datetime.now(timezone.utc)
 
-        # Confirm and return
         confirmation.confirm(self.request)
         user.save()
-        return Response({"detail": _("ok")}, status=status.HTTP_200_OK)
+
+        response = Response({"detail": _("ok")}, status=status.HTTP_200_OK)
+
+        if api_settings.USE_JWT and account_settings.LOGIN_ON_EMAIL_CONFIRMATION:
+            set_jwt_cookies(user, response)
+
+        return response

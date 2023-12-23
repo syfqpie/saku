@@ -199,6 +199,8 @@ ACCOUNT_ADAPTER = "auth.adapters.AccountAdapter"
 ACCOUNT_AUTHENTICATION_METHOD = "username"
 ACCOUNT_EMAIL_VERIFICATION = "optional"
 ACCOUNT_USERNAME_MIN_LENGTH = 5
+ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
+ACCOUNT_LOGIN_ON_PASSWORD_RESET = True
 
 # Simple JWT
 # https://django-rest-framework-simplejwt.readthedocs.io/en/latest/settings.html
