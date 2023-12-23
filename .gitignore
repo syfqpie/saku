@@ -1,6 +1,8 @@
 # Web stuffs
 **/node_modules
 **/dist
+**/.angular
+**/.vscode
 
 # local env files
 **/.docker.env

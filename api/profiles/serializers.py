@@ -4,7 +4,7 @@ from profiles.models import Profile
 
 class ProfileSerializer(serializers.ModelSerializer):
 
-    email = serializers.CharField(source="user.email")
+    username = serializers.CharField(source="user.username")
 
     class Meta:
         model = Profile
