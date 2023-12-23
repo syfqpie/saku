@@ -1,74 +1,50 @@
 import { Injectable, isDevMode } from '@angular/core';
+import { Router } from '@angular/router';
 import {
 	HttpErrorResponse,
 	HttpEvent,
 	HttpInterceptor,
 	HttpHandler,
 	HttpRequest,
-	HttpResponse,
 	HttpStatusCode,
 	HttpHeaders
 } from '@angular/common/http';
-import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { map, catchError, switchMap } from 'rxjs/operators';
 
-// import { AuthService } from '../services/auth/auth.service';
-import { HttpErrorCode, HttpErrorDetail, HttpHeaderConfig, HttpMethod } from '../../shared/constants/http.constant';
+import { HttpHeaderConfig, JsonActionTypes } from '../../shared/constants/http.constant';
+import { isRefreshCookieExist } from 'src/app/shared/utils/api';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Injectable()
 export class HttpTokenInterceptor implements HttpInterceptor {
 
 	constructor(
-		private router: Router
+		private router: Router,
+		private authSvc: AuthService
 	) { }
 
-	/**
-	 * Intercept requests
-	 * 
-	 * @param req http request
-	 * @param next http handler
-	 * @returns a http handler
-	 */
-	intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-		// Get token
-		// const token = this.tokenSvc.getToken('accessToken')
+	intercept(
+		request: HttpRequest<unknown>,
+		next: HttpHandler
+	): Observable<HttpEvent<unknown>> {
+		request = this.configureHeader(request)
 
-		// Append token if available
-		// if (token) {
-		req = this.appendHeader(req)
-		// }
-
-		return next.handle(req).pipe(
+		return next.handle(request).pipe(
 			map((event: HttpEvent<unknown>) => {
-				if (event instanceof HttpResponse) {
-					// console.log('Event: ', event);
-				}
-				return event;
+				return event
 			}),
-			catchError(this.handleError.bind(this))
+			catchError((err) => {
+				return this.handleError(request, next, err)
+			})
 		)
 	}
 
-	/**
-   * Append token to request
-   * 
-   * @param req http request
-   * @param token saved token
-   * @returns updated request
-   */
-	private appendHeader(req: HttpRequest<unknown>) {
+	private configureHeader(req: HttpRequest<unknown>): HttpRequest<unknown> {
 		const headers = new HttpHeaders()
-
 		headers.append(HttpHeaderConfig.ACCEPT, HttpHeaderConfig.ACCEPT_VALUE)
-		// headers.append(HttpHeaderConfig.AUTHORIZATION, `${HttpHeaderConfig.TOKEN_PREFIX} ${token}`)
 
-		// Append content type to header if method is POST or PUT or PATCH only
-		if (
-			req.method === HttpMethod.POST ||
-			req.method === HttpMethod.PUT ||
-			req.method === HttpMethod.PATCH
-		) {
+		if (JsonActionTypes.includes(req.method)) {
 			headers.append(HttpHeaderConfig.CONTENT_TYPE, HttpHeaderConfig.CONTENT_TYPE_JSON)
 		}
 
@@ -77,49 +53,45 @@ export class HttpTokenInterceptor implements HttpInterceptor {
 		})
 	}
 
-	/**
-	 * Error handling
-	 * 
-	 * Customised error handling here
-	 * 
-	 * @param error http error
-	 * @returns HttpErrorResponse
-	 */
-	private handleError(error: HttpErrorResponse) {
-		if (!navigator.onLine) {
-			// Server or connection error happened
-		} else {
-			if (error instanceof HttpErrorResponse) {
-				// Handle Http Error ie: error.status === 403, 404...
-				if (
-					error.status === HttpStatusCode.Unauthorized &&
-					error.error.code === HttpErrorCode.TOKEN_NOT_VALID
-				) {
-					// token not valid: wrong token or expired
-					// show toastr and logout
-					// this.notify.error('Session ended', 'Please try to login again')
-					// this.authSvc.logout()
-				}
-
-				if (
-					error.status === HttpStatusCode.Forbidden &&
-					error.error?.detail === HttpErrorDetail.NO_PERMISSION
-				) {
-					// user has no permission to access API
-					// navigated not not-authorized page
-					this.router.navigate(['/not-authorized'])
-				}
-			} else {
-				// Handle Client Error
-				// ie: Angular Error, ReferenceError...
+	private handleError(
+		request: HttpRequest<unknown>,
+		next: HttpHandler,
+		error: HttpErrorResponse
+	): Observable<HttpEvent<unknown>> {
+		if (navigator.onLine && error instanceof HttpErrorResponse) {
+			if (
+				error.status === HttpStatusCode.Unauthorized &&
+				isRefreshCookieExist()
+			) {
+				// could be access token expired so we are going
+				// to refresh the token
+				return this.handleExpiredAccessToken(request, next)
+			} else if (
+				error.status === HttpStatusCode.Unauthorized &&
+				!isRefreshCookieExist()
+			) {
+				// could be refresh token expired
+				this.router.navigate(['/auth', 'login'])
 			}
+			// TODO: handle forbidden error
 		}
 
-		if (isDevMode()) {
-			// Debugging...
-			console.error('It happens: ', error);
-		}
+		if (isDevMode()) console.error('It happens: ', error);
 
 		return throwError(() => error)
+	}
+
+	private handleExpiredAccessToken(
+		request: HttpRequest<unknown>,
+		next: HttpHandler
+	): Observable<HttpEvent<unknown>> {
+		return this.authSvc.refreshToken().pipe(
+			switchMap(() => {
+				return next.handle(this.configureHeader(request))
+			}),
+			catchError((err) => {
+				return throwError(() => err)
+			})
+		)
 	}
 }

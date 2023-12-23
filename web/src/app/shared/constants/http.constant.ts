@@ -49,3 +49,5 @@ export const HttpMethod = {
 export const BasicResponseKey = {
 	NON_FIELD_ERRORS: 'nonFieldErrors'
 }
+
+export const JsonActionTypes = [HttpMethod.POST, HttpMethod.PUT, HttpMethod.PATCH]
