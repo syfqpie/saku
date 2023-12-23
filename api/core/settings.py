@@ -239,3 +239,42 @@ SIMPLE_JWT = {
 CORS_ALLOWED_ORIGINS = config("ALLOWED_ORIGINS", default="", cast=lambda v: [s.strip() for s in v.split(",")])
 CORS_EXPOSE_HEADERS = ["Content-Disposition"]
 CORS_ALLOW_CREDENTIALS = True
+
+# Loggig configs
+# https://docs.djangoproject.com/en/4.2/howto/logging/
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "[{asctime}] [{levelname}] app={name} message={message}",
+            "style": "{",
+            "datefmt" : "%y/%b/%Y %H:%M:%S"
+        },
+        "simple": {
+            "format": "[{asctime}] [{levelname}] {message}",
+            "style": "{",
+            "datefmt" : "%y/%b/%Y %H:%M:%S"
+        },
+    },
+    "filters": {
+        "require_debug_true": {
+            "()": "django.utils.log.RequireDebugTrue",
+        },
+    },
+    "handlers": {
+        "console": {
+            "level": "INFO",
+            "filters": ["require_debug_true"],
+            "class": "logging.StreamHandler",
+            "formatter": "simple"
+        },
+    },
+    "loggers": {
+        "profiles": {
+            "handlers": ["console"],
+            "level": "INFO"
+        },
+    },
+}
