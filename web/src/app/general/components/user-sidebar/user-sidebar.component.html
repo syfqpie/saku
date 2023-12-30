@@ -1,16 +1,14 @@
 <div class="p-6">
-    <div class="flex justify-center">
-       <div>
-           <div class="mb-3">
-                <app-user-avatar
-                    [username]="username">
-                </app-user-avatar>
-           </div>
+    <div class="text-ellipsis overflow-hidden whitespace-nowrap">
+        <div class="mb-3 flex justify-center">
+             <app-user-avatar
+                 [username]="username">
+             </app-user-avatar>
+        </div>
 
-            <p class="text-center font-semibold text-xl mb-3">
-                {{ username }}
-            </p>
-       </div>
+         <p class="text-center font-semibold text-xl mb-3">
+             {{ username }}
+         </p>
     </div>
 
     <sk-button
