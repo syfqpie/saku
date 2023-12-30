@@ -15,6 +15,16 @@ const routes: Routes = [
 		canActivate: [AuthGuard],
 		resolve: [AuthResolver],
 		loadChildren: () => import('./general/general.module').then(m => m.GeneralModule)
+	},
+	{
+		/**
+		 * TODO:
+		 * 		- redirect to 404 page if logged in
+		 * 		- redirect to landing page if not
+		 */
+		
+		path: '**',
+		redirectTo: 'home'
 	}
 ]
 
