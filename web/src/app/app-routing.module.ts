@@ -6,6 +6,9 @@ import { AuthResolver } from './core/resolvers/auth.resolver';
 
 const routes: Routes = [
 	{
+		path: '', redirectTo: 'home', pathMatch: 'full'
+	},
+	{
 		path: 'auth',
 		canActivate: [NonAuthGuard],
 		loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
@@ -23,8 +26,7 @@ const routes: Routes = [
 		 * 		- redirect to landing page if not
 		 */
 		
-		path: '**',
-		redirectTo: 'home'
+		path: '**', redirectTo: 'home'
 	}
 ]
 
