@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-
+/* Buttons */
 .sk-btn {
     @apply font-medium text-center rounded-lg transition-colors;
 }
@@ -22,9 +22,9 @@
 	@apply px-6 py-3.5 text-base;
 }
 .sk-btn.sk-btn-default {
-    @apply focus:outline-none focus:ring-2 focus:ring-cyan-600/50 text-zinc-400
+    @apply focus:outline-none focus:ring-2 focus:ring-cyan-400/50 text-zinc-400
 	bg-zinc-800/50 enabled:hover:text-cyan-400 enabled:hover:bg-cyan-400/5
-	disabled:bg-zinc-800/80 disabled:text-zinc-400/60 disabled:cursor-not-allowed;
+	disabled:bg-zinc-800 disabled:text-zinc-400/20 disabled:cursor-not-allowed;
 }
 .sk-btn.sk-btn-auth {
 	@apply focus:outline-none border focus:ring-2 focus:ring-cyan-600/50 bg-zinc-800
@@ -33,6 +33,7 @@
 	disabled:border-zinc-600/60 disabled:text-zinc-400/60;
 }
 
+/* Forms */
 .sk-form {
 	@apply block w-full rounded-lg border outline-none focus:ring-2 transition-colors;
 }
@@ -46,24 +47,25 @@
 	@apply p-4 sm:text-base;
 }
 .sk-form.sk-form-auth {
-	@apply border-zinc-600 bg-zinc-700 placeholder-zinc-500 text-white
-	focus:border-cyan-600 focus:ring-cyan-600/50 disabled:bg-zinc-700/80
-	disabled:text-white/60 disabled:border-zinc-600/60;
+	@apply border-zinc-800 bg-zinc-900 placeholder-zinc-500 text-white
+	focus:border-cyan-600 focus:ring-cyan-600/50 disabled:bg-zinc-800/80
+	disabled:text-white/60 disabled:placeholder-zinc-600/50 disabled:border-zinc-800/80
+	disabled:cursor-not-allowed;
 }
 .sk-form.sk-form-w-icon {
 	@apply ps-10;
 }
 .sk-form.sk-form-invalid {
-	@apply !border-red-600 focus:border-red-600 focus:ring-red-600/50;
+	@apply !border-red-800 focus:border-red-800 focus:ring-red-800/50;
 }
 .sk-form.sk-form-valid {
-	@apply text-xs !border-green-600 focus:border-green-600 focus:ring-green-600/50;
+	@apply text-xs !border-green-800 focus:border-green-800 focus:ring-green-800/50;
 }
-.sk-form.sk-form-checkbox[type="checkbox"] {
+.sk-form-checkbox[type="checkbox"] {
 	@apply w-5 h-5 rounded-full !outline-none border-0 checked:text-cyan-400/5 checked:bg-cyan-400/5
 	checked:focus:ring-cyan-400/20 [&:not(:checked)]:bg-zinc-700 [&:not(:checked)]:text-zinc-700
 	[&:not(:checked)]:focus:ring-zinc-600/20 focus:ring-1 focus:ring-offset-0 transition-colors
 }
-.sk-form.sk-form-checkbox[type="checkbox"]:checked {
+.sk-form-checkbox[type="checkbox"]:checked {
   	background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='%2322d3ee' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
 }
