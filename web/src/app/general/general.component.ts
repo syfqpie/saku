@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
 	template: `
 		<div
 			class="grid grid-cols-5 min-h-screen bg-zinc-900 text-zinc-200">
-			<div class="col-span-1 border-r border-r-zinc-800">
+			<div class="col-span-1 border-r border-r-zinc-800 sticky h-screen top-0">
 				<app-user-sidebar></app-user-sidebar>
 			</div>
 
@@ -13,7 +13,7 @@ import { Component } from '@angular/core';
 				<router-outlet></router-outlet>
 			</div>
 
-			<div class="col-span-1 border-l border-l-zinc-800">
+			<div class="col-span-1 border-l border-l-zinc-800 sticky h-screen top-0">
 				<app-menu-sidebar></app-menu-sidebar>
 			</div>
 		</div>
