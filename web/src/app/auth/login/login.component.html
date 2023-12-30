@@ -1,0 +1,103 @@
+<div>
+    <div class="col-span-12">
+        <p class="mb-0">
+            Welcome back!
+        </p>
+
+        <p class="mb-4 text-sm text-white/60">
+            Log in to your account
+        </p>
+    </div>
+
+    <div class="">
+        <form [formGroup]="form">
+            <div class="mb-3">
+                <div class="relative">
+                    <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                        <i class="ri-user-4-line text-zinc-500"></i>
+                    </div>
+    
+                    <input
+                        type="text"
+                        class="sk-form-auth sk-form-w-icon"
+                        placeholder="Username"
+                        skInput="sm"
+                        formControlName="username"
+                        [ngClass]="{
+                            'sk-form-invalid':
+                                form.controls['username'].errors &&
+                                (
+                                    form.controls['username'].dirty ||
+                                    form.controls['username'].touched
+                                )
+                        }" />
+                </div>
+    
+                <sk-form-message
+                    [control]="form.controls['username']"
+                    [messages]="formMessages.username"
+                    controlName="username" /> 
+            </div>
+
+            <div class="mb-3">
+                <div class="relative">
+                    <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                        <i class="ri-key-2-line text-zinc-500"></i>
+                    </div>
+    
+                    <input
+                        type="password"
+                        class="sk-form-auth sk-form-w-icon"
+                        placeholder="Password"
+                        skInput="sm"
+                        formControlName="password"
+                        [ngClass]="{
+                            'sk-form-invalid':
+                                form.controls['password'].errors &&
+                                (
+                                    form.controls['password'].dirty ||
+                                    form.controls['password'].touched
+                                )
+                        }" />
+                </div>
+
+                <sk-form-message
+                    [control]="form.controls['password']"
+                    [messages]="formMessages.password"
+                    controlName="password" /> 
+            </div>
+
+            <sk-button
+                [buttonTpl]="buttonTpl"
+                [isFull]="true"
+                [spinning]="isLoading"
+                [disabled]="isLoading"
+                size="sm"
+                (click)="doPreLogin()">
+                <ng-template #buttonTpl>
+                    Login
+                </ng-template>
+            </sk-button>
+        </form>
+
+        <div class="m-4 border-t border-t-1 border-t-zinc-600"></div>
+
+        <div class="px-4 text-center">
+            <p class="text-xs text-zinc-500">No account?
+                <a 
+                    class="underline text-white/80 hover:text-cyan-400"
+                    [routerLink]="['/auth', 'register']">
+                    Register
+                </a>
+            </p>
+
+            <p class="text-xs text-zinc-500">Forgot password?
+                <a 
+                    class="underline text-white/80 hover:text-cyan-400"
+                    [routerLink]="['/auth', 'forgot-password']">
+                    Reset
+                </a>
+            </p>
+        </div>
+    </div>
+</div>
