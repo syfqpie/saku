@@ -12,7 +12,7 @@ import {
 import { Observable, throwError } from 'rxjs';
 import { map, catchError, switchMap } from 'rxjs/operators';
 
-import { HttpHeaderConfig, JsonActionTypes } from '../../shared/constants/http.constant';
+import { ApiErrorCode, HttpHeaderConfig, JsonActionTypes } from '../../shared/constants/http.constant';
 import { isRefreshCookieExist } from 'src/app/shared/utils/api';
 import { AuthService } from 'src/app/auth/services/auth.service';
 
@@ -60,6 +60,11 @@ export class HttpTokenInterceptor implements HttpInterceptor {
 	): Observable<HttpEvent<unknown>> {
 		if (navigator.onLine && error instanceof HttpErrorResponse) {
 			if (
+				error.status === HttpStatusCode.Unauthorized &&
+				error.error['code'] === ApiErrorCode.USER_NOT_FOUND
+			) {
+				this.authSvc.logout()
+			} else if (
 				error.status === HttpStatusCode.Unauthorized &&
 				isRefreshCookieExist()
 			) {
