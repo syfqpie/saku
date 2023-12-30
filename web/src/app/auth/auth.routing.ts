@@ -37,6 +37,10 @@ export const AuthRoutes: Routes = [
 				data: {
 					title: 'Verify account'
 				}
+			},
+			{
+				path: '**',
+				redirectTo: 'login'
 			}
 		]
 	}

@@ -14,7 +14,7 @@ import { FormMessage } from 'src/app/shared/models/base.model';
 						control!.dirty ||
 						control!.touched
 					)">
-					<p class="mt-2 text-xs text-red-400">
+					<p class="mt-2 text-xs text-red-800">
 						{{ msg.message }}
 					</p> 
 				</ng-template>

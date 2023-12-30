@@ -5,9 +5,11 @@ import { CompoSize, CompoSizes } from 'src/app/shared/models/component.model';
 	selector: 'sk-button',
 	template: `
     <button
-		class="sk-btn sk-btn-auth"
+		class="sk-btn"
 		[ngClass]="{
 			'w-full': isFull,
+			'sk-btn-auth': isAuth,
+			'sk-btn-default': !isAuth,
 			'sk-btn-xs': size === CompoSizes.XS,
 			'sk-btn-sm': size === CompoSizes.SM,
 			'sk-btn-md': size === CompoSizes.MD,
@@ -44,6 +46,9 @@ export class ButtonComponent {
 
 	@Input()
 	size: CompoSize = CompoSizes.MD
+
+	@Input()
+	isAuth = false
 
 	readonly CompoSizes = CompoSizes
 }

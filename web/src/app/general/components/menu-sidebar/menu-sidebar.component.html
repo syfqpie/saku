@@ -1,0 +1,18 @@
+<div class="p-6">
+    <ul class="space-y-0"> 
+        <ng-container *ngFor="let menu of menus">
+            <li>
+                <a
+                    [routerLink]="menu.path"
+                    routerLinkActive="!text-cyan-400 hover:!text-cyan-400 bg-cyan-400/5 font-semibold"
+                    class="flex items-center px-3 py-1.5 group text-sm text-zinc-500 mb-1.5
+                    hover:text-zinc-200 hover:bg-zinc-200/5 transition-colors rounded-lg">
+                    <i class="{{ menu.icon }}"></i>
+                    <span class="ms-3">
+                        {{ menu.title }}
+                    </span>
+                </a>
+            </li>
+        </ng-container>
+    </ul>
+</div>
