@@ -14,9 +14,9 @@ export const GeneralRoutes: Routes = [
 				component: HomeComponent
 			},
 			{
-				path: 'sheet',
+				path: 'sheet/:id',
 				component: SheetComponent
-			}
+			},
 		]
 	}
 ]

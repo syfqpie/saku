@@ -10,6 +10,6 @@ export interface SheetItem {
 export interface Sheet {
     id: string;
     title: string;
-    items: SheetItem[];
     created_at: string;
+    items?: SheetItem[];
 }
