@@ -50,4 +50,18 @@ export class SheetService {
 			}))
 	}
 
+	/**
+	 * Delete sheet
+	 * 
+	 * @param id id of sheet
+	 * @returns null
+	 */
+	public delete(id: string): Observable<null> {
+		const urlTemp = `${BASE_URL}${id}`
+		return this.http.delete<null>(urlTemp)
+			.pipe(map((response) => {
+				return response
+			}))
+	}
+
 }

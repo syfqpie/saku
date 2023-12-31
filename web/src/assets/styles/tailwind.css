@@ -33,12 +33,12 @@
 	disabled:border-zinc-600/60 disabled:text-zinc-400/60;
 }
 .sk-sheet {
-	@apply border border-zinc-800 rounded-lg flex;
+	@apply flex;
 }
 .sk-sheet .sk-sheet-view-btn {
-	@apply flex-initial w-full  transition-colors outline-none ring-0 border-0 enabled:hover:text-cyan-400
+	@apply flex-initial w-full  transition-colors outline-none ring-0 enabled:hover:text-cyan-400
 	enabled:hover:bg-cyan-600/50 disabled:bg-zinc-800/80
-	disabled:text-zinc-400/60 rounded-s-lg p-2.5 text-start;
+	disabled:text-zinc-400/60 rounded-s-lg p-2.5 text-start border border-zinc-800;
 }
 .sk-sheet .sk-sheet-rm-btn {
 	@apply transition-colors outline-none ring-0 border-0 bg-zinc-800 text-zinc-400

@@ -1,6 +1,10 @@
-import { Component, Input } from '@angular/core';
-import { Sheet } from '../../models/sheets.model';
+import { Component, Input, OnDestroy } from '@angular/core';
+import { Subscription, first } from 'rxjs';
 import { Router } from '@angular/router';
+
+import { Sheet } from '../../models/sheets.model';
+import { SheetService } from '../../services/sheet.service';
+
 
 @Component({
 	selector: 'app-sheet-item',
@@ -10,7 +14,7 @@ import { Router } from '@angular/router';
 				<button
 					class="sk-sheet-view-btn"
 					(click)="viewSheet()">
-					<p>
+					<p class="truncate">
 						{{ sheet.title }}
 					</p>
 
@@ -20,7 +24,9 @@ import { Router } from '@angular/router';
 					</p>
 				</button>
 
-				<button class="sk-sheet-rm-btn">
+				<button
+					class="sk-sheet-rm-btn"
+					(click)="deleteSheet()">
 					<i class="ri-delete-bin-2-line"></i>
 				</button>
 			</div>
@@ -29,15 +35,34 @@ import { Router } from '@angular/router';
 	styles: [
 	]
 })
-export class SheetItemComponent {
+export class SheetItemComponent implements OnDestroy {
 	@Input()
 	sheet?: Sheet
+	
+	public subscription: Subscription = new Subscription
 
 	constructor(
-		private router: Router
+		private router: Router,
+		private sheetSvc: SheetService
 	) {}
+
+	ngOnDestroy(): void {
+		if (this.subscription) this.subscription.unsubscribe()
+	}
 
 	public viewSheet() {
 		return this.router.navigate(['/sheet', this.sheet!.id])
+	}
+
+	public deleteSheet() {
+		if (this.sheet) {
+			this.subscription.add(this.sheetSvc.delete(this.sheet.id)
+				.pipe(first())
+				.subscribe({
+					next: (res) => {
+						// TODO: Send signal to refresh
+					}
+			}))
+		}
 	}
 }
