@@ -2,7 +2,7 @@
     <div
         class="grid grid-cols-12 gap-2 text-zinc-400 text-xs
         border-b border-dashed border-zinc-400/10 pb-2">
-        <div class="col-span-7">
+        <div class="col-span-9">
             <p class="text-start ms-7">
                 Item
             </p>
@@ -14,65 +14,82 @@
             </p>
         </div>
 
-        <div class="col-span-2">
-            <p class="text-start">
-                Category
-            </p>
-        </div>
-
         <div class="col-span-1">
         </div>
     </div>
 
-    <ng-container *ngFor="let item of items">
-        <div class="grid grid-cols-12 gap-2 pt-2">
-            <div class="col-span-7">
-                <div class="flex">
-                    <input
-                        checked
-                        type="checkbox"
-                        value=""
-                        class="sk-form-checkbox">
-                    <label
-                        class="ms-2 rounded-full font-medium">
-                        {{ item.item }}
-                    </label>
-                </div>
-            </div>
-
-            <div class="col-span-2 text-zinc-400">
-                <p class="">
-                    RM {{ item.value }}
-                </p>
-            </div>
-
-            <div class="col-span-2 text-zinc-400">
-                <p>
-                    Food
-                </p>
-            </div>
-
-            <div class="col-span-1 text-end text-zinc-400">
-                <i class="ri-delete-row"></i>
-            </div>
-        </div>
-    </ng-container>
+    <form [formGroup]="form">
+        <ng-container formArrayName="items">
+            <ng-container *ngFor="let itemForm of $items.controls; let formIndex=index">
+                <form
+                    class="grid grid-cols-12 gap-2 pt-2"
+                    [formGroupName]="formIndex">
+                    <div class="col-span-9">
+                        <div class="flex">
+                            <input
+                                type="checkbox"
+                                formControlName="is_checked"
+                                class="sk-form-checkbox my-auto">
+                            <input
+                                type="text"
+                                formControlName="item"
+                                placeholder="Enter item"
+                                class="ms-2 focus:outline-none border-none focus:ring-0
+                                focus:outline-offset-0 p-0 bg-transparent caret-cyan-400
+                                placeholder-zinc-500/50 w-full text-sm" />
+                        </div>
+                    </div>
+        
+                    <div class="col-span-2 text-zinc-400">
+                        <input
+                            type="number"
+                            formControlName="amount"
+                            placeholder="Enter amount"
+                            class="focus:outline-none border-none focus:ring-0
+                            focus:outline-offset-0 p-0 bg-transparent caret-cyan-400
+                            placeholder-zinc-500/50 w-full text-sm" />
+                    </div>
+        
+                    <div class="col-span-1 text-end text-zinc-400">
+                        <button
+                            class="p-0 text-zinc-400 hover:text-cyan-400"
+                            (click)="deleteItem(formIndex)">
+                            <i class="ri-delete-row"></i>
+                        </button>
+                    </div>
+                </form>
+            </ng-container>
+        </ng-container>
+    </form>
 
     <ng-container *ngIf="totalValue > 0">
         <div
-            class="grid grid-cols-12 gap-2 text-zinc-400 text-xs
+            class="grid grid-cols-12 gap-2 text-zinc-400 text-sm
             border-t border-dashed border-zinc-400/10 pt-2 mt-2">
-            <div class="col-span-7">
+            <div class="col-span-9">
                 <p class="text-end ms-7">
                     Total
                 </p>
             </div>
 
-            <div class="col-span-5">
+            <div class="col-span-3">
                 <p class="text-start">
                     RM {{ totalValue }}
                 </p>
             </div>
         </div>
     </ng-container>
+
+    <div
+        class="grid grid-cols-12 gap-2 text-zinc-400 text-xs pt-2 mt-2">
+        <div class="col-span-11"></div>
+
+        <div class="col-span-1 text-end text-zinc-400">
+            <button
+                class="p-0 text-zinc-400 hover:text-cyan-400"
+                (click)="addItem()">
+                <i class="ri-add-circle-fill"></i>
+            </button>
+        </div>
+    </div>
 </div>
