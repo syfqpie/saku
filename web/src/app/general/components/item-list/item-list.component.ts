@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { SheetItem } from '../../models/sheets.model';
 
 @Component({
@@ -24,12 +25,20 @@ export class ItemListComponent {
 	}
 
 	get totalValue() {
-		return this.$items.value.reduce((acc: number, array: SheetItem) => acc + array.amount, 0)
+		return this.$items.value.reduce((acc: number, array: SheetItem) => {
+			let currentAmount = 0
+
+			if (!isNaN(Number(array.amount)) && array.amount >= 0) {
+				currentAmount = array.amount
+			}
+		
+			return acc + currentAmount
+		}, 0)
 	}
 
-	public generateRow(
+	private generateRow(
 		item: string | null = null,
-		amount: number | null = null,
+		amount = 0,
 		is_checked = false
 	) {
 		return this.fb.group({
