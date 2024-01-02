@@ -41,7 +41,9 @@
                                 placeholder-zinc-500/50 w-full text-sm" />
                         </td>
                         <td class="text-end">
-                            <button class="p-0 text-zinc-400 hover:text-cyan-400" (click)="deleteItem(1)">
+                            <button
+                                class="p-0 text-zinc-400 hover:text-cyan-400"
+                                (click)="deleteItem(formIndex)">
                                 <i class="ri-delete-row text-lg"></i>
                             </button>
                         </td>
@@ -54,7 +56,9 @@
                 <td
                     class="ps-1 text-end"
                     colspan="2">
-                    <button class="p-0 text-zinc-400 hover:text-cyan-400" (click)="addItem()">
+                    <button
+                        class="p-0 text-zinc-400 hover:text-cyan-400"
+                        (click)="addItem()">
                         <i class="ri-add-circle-fill text-lg"></i>
                     </button>
                 </td>
