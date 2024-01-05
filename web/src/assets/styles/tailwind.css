@@ -7,7 +7,7 @@
     @apply font-medium text-center rounded-lg transition-colors;
 }
 .sk-btn.sk-btn-xs {
-	@apply px-3 py-2 text-xs;
+	@apply px-2 py-1 text-xs;
 }
 .sk-btn.sk-btn-sm {
 	@apply px-3 py-2 text-sm;
