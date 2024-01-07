@@ -1,15 +1,22 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component,
+	EventEmitter,
+	Input,
+	OnChanges,
+	OnDestroy,
+	OnInit,
+	Output,
+	SimpleChanges } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 import { SheetItem } from '../../models/sheets.model';
-import { Subscription } from 'rxjs';
 
 @Component({
 	selector: 'app-item-list',
 	templateUrl: './item-list.component.html',
-	styles: []
+	styles: [],
 })
-export class ItemListComponent implements OnInit, OnDestroy {
+export class ItemListComponent implements OnInit, OnChanges, OnDestroy {
 	@Input()
 		items: SheetItem[] = []
 
@@ -36,6 +43,15 @@ export class ItemListComponent implements OnInit, OnDestroy {
 				}
 			)
 		)
+	}
+
+	ngOnChanges(changes: SimpleChanges): void {
+		if (changes['items'].currentValue !== undefined) {
+			// First items assignment
+			changes['items'].currentValue.forEach((item: SheetItem) => {
+				this.addItem(item.item, item.amount, item.is_checked)
+			})
+		}
 	}
 
 	ngOnDestroy(): void {
@@ -73,8 +89,12 @@ export class ItemListComponent implements OnInit, OnDestroy {
 		})
 	}
 
-	public addItem() {
-		this.$items.push(this.generateRow())
+	public addItem(
+		item: string | null = null,
+		amount = 0,
+		is_checked = false
+	) {
+		this.$items.push(this.generateRow(item, amount, is_checked))
 	}
 
 	public deleteItem(index: number) {
