@@ -8,7 +8,7 @@ describe('SheetItemComponent', () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [SheetItemComponent]
+			declarations: [SheetItemComponent],
 		});
 		fixture = TestBed.createComponent(SheetItemComponent);
 		component = fixture.componentInstance;
