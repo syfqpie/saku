@@ -1,7 +1,39 @@
 <div>
-    <h1 class="text-xl mb-4">
-        # Sheet name
-    </h1>
+    <div class="mb-4 flex flex-wrap">
+        <div class="flex-auto">
+            <sk-button
+                [buttonTpl]="backBtnTpl"
+                size="xs"
+                (click)="navigateBack()">
+                <ng-template #backBtnTpl>
+                    <i class="ri-arrow-left-s-line"></i> Back
+                </ng-template>
+            </sk-button>
+        </div>
 
-    <app-item-list></app-item-list>
+        <div class="flex-auto text-end">
+            <sk-button
+                [buttonTpl]="saveBtnTpl"
+                size="xs"
+                (click)="onSave()">
+                <ng-template #saveBtnTpl>
+                    <i class="ri-save-3-line"></i> Save
+                </ng-template>
+            </sk-button>
+        </div>
+    </div>
+
+    <form [formGroup]="form">
+        <input
+            class="focus:outline-none border-none focus:ring-0
+            focus:outline-offset-0 p-0 bg-transparent caret-cyan-400
+            text-xl mb-4 placeholder-zinc-500/50"
+            placeholder="Enter title"
+            formControlName="title" />
+    </form>
+
+    <app-item-list
+        [items]="sheet && sheet.items ? sheet.items : []"
+        (formValidEvent)="onItemsFormValid($event)">
+    </app-item-list>
 </div>
