@@ -19,6 +19,6 @@ export const EnterExitLeftTrigger = trigger('enterExitLeft', [
 
 export const ContainerTrigger = trigger('container', [
 	transition('* => void', [
-		query('@*', [animateChild()], { optional: true })
+		query('@*', [animateChild()], { optional: true }),
 	]),
 ])
