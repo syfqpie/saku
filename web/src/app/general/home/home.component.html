@@ -1,16 +1,22 @@
-<div class="grid grid-cols-4 gap-4 mb-4">
-    <div class="border border-zinc-700 border-dashed rounded-lg h-56"></div>
-    <div class="border border-zinc-700 border-dashed rounded-lg h-56"></div>
-    <div class="border border-zinc-700 border-dashed rounded-lg h-56"></div>
-    <div class="border border-zinc-700 border-dashed rounded-lg h-56"></div>
-</div>
+<div>
+    <div class="mb-4 flex flex-wrap">
+        <h1 class="flex-auto text-xl font-bold">Home</h1>
+        <div class="flex-0">
+            <sk-button
+                size="xs"
+                [buttonTpl]="newBtnTpl"
+                [disabled]="isLoading"
+                (click)="addNew()">
+                <ng-template #newBtnTpl>
+                    <i class="ri-sticky-note-add-line"></i> New
+                </ng-template>
+            </sk-button>
+        </div>
+    </div>
 
-<div class="grid grid-cols-3 gap-4 mb-4">
-    <div class="border border-zinc-700 border-dashed rounded-lg h-56"></div>
-    <div class="border border-zinc-700 border-dashed rounded-lg h-56"></div>
-    <div class="border border-zinc-700 border-dashed rounded-lg h-56"></div>
-</div>
-
-<div class="grid grid-cols-1">
-    <div class="border border-zinc-700 border-dashed rounded-lg h-80"></div>
+    <div class="grid grid-cols-3 gap-4 mb-4">
+        <ng-container *ngFor="let sheet of sheets">
+            <app-sheet-item [sheet]="sheet" />
+        </ng-container>
+    </div>    
 </div>
