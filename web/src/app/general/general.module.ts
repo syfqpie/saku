@@ -7,6 +7,7 @@ import { GeneralRoutes } from './general.routing';
 import { HomeComponent } from './home/home.component';
 import { ItemListComponent } from './components/item-list/item-list.component';
 import { MenuSidebarComponent } from './components/menu-sidebar/menu-sidebar.component';
+import { MobileMenuSidebarComponent } from './components/mobile-menu-sidebar/mobile-menu-sidebar.component';
 import { SheetComponent } from './sheet/sheet.component';
 import { UserSidebarComponent } from './components/user-sidebar/user-sidebar.component';
 import { UserAvatarComponent } from './components/user-avatar/user-avatar.component';
@@ -18,6 +19,7 @@ import { SheetItemComponent } from './components/sheet-item/sheet-item.component
 		HomeComponent,
 		ItemListComponent,
 		MenuSidebarComponent,
+		MobileMenuSidebarComponent,
 		SheetComponent,
 		UserSidebarComponent,
 		UserAvatarComponent,
@@ -25,7 +27,7 @@ import { SheetItemComponent } from './components/sheet-item/sheet-item.component
 	],
 	imports: [
 		RouterModule.forChild(GeneralRoutes),
-		SharedModule
-	]
+		SharedModule,
+	],
 })
 export class GeneralModule { }
