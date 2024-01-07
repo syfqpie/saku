@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { SharedModule } from '../shared/shared.module';
+import { BoardComponent } from './board/board.component';
 import { GeneralComponent } from './general.component';
 import { GeneralRoutes } from './general.routing';
 import { HomeComponent } from './home/home.component';
@@ -14,6 +15,7 @@ import { SheetItemComponent } from './components/sheet-item/sheet-item.component
 
 @NgModule({
 	declarations: [
+		BoardComponent,
 		GeneralComponent,
 		HomeComponent,
 		ItemListComponent,
@@ -25,7 +27,7 @@ import { SheetItemComponent } from './components/sheet-item/sheet-item.component
 	],
 	imports: [
 		RouterModule.forChild(GeneralRoutes),
-		SharedModule
-	]
+		SharedModule,
+	],
 })
 export class GeneralModule { }
