@@ -23,6 +23,20 @@ export class SheetService {
 	}
 
 	/**
+	 * Create sheet
+	 * 
+	 * @param id id of sheet
+	 * @returns null
+	 */
+	public create(body: object): Observable<Sheet> {
+		const urlTemp = `${BASE_URL}`
+		return this.http.post<Sheet>(urlTemp, body)
+			.pipe(map((response) => {
+				return response
+			}))
+	}
+
+	/**
 	 * List owned sheets
 	 * 
 	 * @returns list of sheet objects

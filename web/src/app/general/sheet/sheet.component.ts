@@ -140,6 +140,26 @@ export class SheetComponent extends LoadableComponent implements OnDestroy {
 						},
 					})
 			)
+		} else {
+			this.createSheet()
 		}
+	}
+
+	private createSheet() {
+		const body = this.getUpdateBody()
+		this.isLoading = true
+
+		this.subscription.add(
+			this.sheetSvc.create(body)
+				.pipe(first())
+				.subscribe({
+					next: () => {
+						this.isLoading = false
+					},
+					error: () => {
+						this.isLoading = false
+					},
+				})
+		)
 	}
 }
