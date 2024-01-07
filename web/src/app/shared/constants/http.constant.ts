@@ -51,3 +51,7 @@ export const BasicResponseKey = {
 }
 
 export const JsonActionTypes = [HttpMethod.POST, HttpMethod.PUT, HttpMethod.PATCH]
+
+export const ApiErrorCode =  {
+	USER_NOT_FOUND: 'user_not_found'
+}

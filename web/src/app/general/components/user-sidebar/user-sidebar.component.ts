@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { Profile } from '../../models/profiles.model';
-import { ProfilesService } from '../../services/profiles.service';
+import { ProfileService } from '../../services/profile.service';
 
 @Component({
 	selector: 'app-user-sidebar',
@@ -16,7 +16,7 @@ export class UserSidebarComponent implements OnInit, OnDestroy {
 
 	constructor(
 		private authSvc: AuthService,
-		private profileSvc: ProfilesService
+		private profileSvc: ProfileService
 	) {}
 
 	ngOnInit(): void {

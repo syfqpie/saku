@@ -1,78 +1,88 @@
-<div class="text-sm">
-    <div
-        class="grid grid-cols-12 gap-2 text-zinc-400 text-xs
-        border-b border-dashed border-zinc-400/10 pb-2">
-        <div class="col-span-7">
-            <p class="text-start ms-7">
-                Item
-            </p>
-        </div>
+<div>
+    <table class="w-full text-sm table-fixed text-zinc-400">
+        <thead class="text-xs text-left border-b border-dashed border-zinc-400/10">
+            <tr>
+                <th scope="col" class="ps-7 py-2 font-normal w-[75%]">
+                    Item
+                </th>
+                <th scope="col" class="px-1 py-2 font-normal w-[16.67%]">
+                    Amount
+                </th>
+                <th scope="col" class="px-6 py-2 font-normal w-[8.33%]"></th>
+            </tr>
+        </thead>
 
-        <div class="col-span-2">
-            <p class="text-start">
-                Amount
-            </p>
-        </div>
+        <tbody [formGroup]="form">
+            <ng-container formArrayName="items">
+                <ng-container *ngFor="let itemForm of $items.controls; let formIndex=index">
+                    <tr [formGroupName]="formIndex">
+                        <th
+                            scope="row"
+                            class="text-left py-2 flex font-normal">
+                            <input
+                                type="checkbox"
+                                formControlName="is_checked"
+                                class="sk-form-checkbox my-auto">
+                            <input
+                                type="text"
+                                formControlName="item"
+                                placeholder="Enter item"
+                                class="ms-2 focus:outline-none border-none focus:ring-0
+                                focus:outline-offset-0 p-0 bg-transparent caret-cyan-400
+                                placeholder-zinc-500/50 w-full text-sm" />
+                        </th>
+                        <td class="ps-1">
+                            <input
+                                type="number"
+                                formControlName="amount"
+                                placeholder="Enter amount"
+                                class="focus:outline-none border-none focus:ring-0
+                                focus:outline-offset-0 p-0 bg-transparent caret-cyan-400
+                                placeholder-zinc-500/50 w-full text-sm" />
+                        </td>
+                        <td class="text-end">
+                            <button
+                                class="p-0 text-zinc-400 enabled:hover:text-cyan-400
+                                disabled:text-zinc-400/50 disabled:cursor-not-allowed"
+                                [disabled]="disabled"
+                                (click)="deleteItem(formIndex)">
+                                <i class="ri-delete-row text-lg"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </ng-container>
+            </ng-container>
 
-        <div class="col-span-2">
-            <p class="text-start">
-                Category
-            </p>
-        </div>
+            <tr>
+                <td></td>
+                <td
+                    class="ps-1 text-end"
+                    colspan="2">
+                    <button
+                        class="p-0 text-zinc-400 enabled:hover:text-cyan-400
+                        disabled:text-zinc-400/50 disabled:cursor-not-allowed"
+                        [disabled]="disabled"
+                        (click)="addItem()">
+                        <i class="ri-add-circle-fill text-lg"></i>
+                    </button>
+                </td>
+            </tr>
 
-        <div class="col-span-1">
-        </div>
-    </div>
-
-    <ng-container *ngFor="let item of items">
-        <div class="grid grid-cols-12 gap-2 pt-2">
-            <div class="col-span-7">
-                <div class="flex">
-                    <input
-                        checked
-                        type="checkbox"
-                        value=""
-                        class="sk-form-checkbox">
-                    <label
-                        class="ms-2 rounded-full font-medium">
-                        {{ item.item }}
-                    </label>
-                </div>
-            </div>
-
-            <div class="col-span-2 text-zinc-400">
-                <p class="">
-                    RM {{ item.value }}
-                </p>
-            </div>
-
-            <div class="col-span-2 text-zinc-400">
-                <p>
-                    Food
-                </p>
-            </div>
-
-            <div class="col-span-1 text-end text-zinc-400">
-                <i class="ri-delete-row"></i>
-            </div>
-        </div>
-    </ng-container>
-
-    <ng-container *ngIf="totalValue > 0">
-        <div
-            class="grid grid-cols-12 gap-2 text-zinc-400 text-xs
-            border-t border-dashed border-zinc-400/10 pt-2 mt-2">
-            <div class="col-span-7">
-                <p class="text-end ms-7">
-                    Total
-                </p>
-            </div>
-
-            <div class="col-span-5">
-                <p class="text-start">
-                    RM {{ totalValue }}
-                </p>
-            </div>
-        </div>
-    </ng-container>
+            <ng-container *ngIf="totalValue >= 0">
+                <tr class="border-t border-dashed border-zinc-400/10">
+                    <td></td>
+                    <td
+                        class="ps-1 py-2 text-start"
+                        colspan="2">
+                        <p class="mb-0">
+                            RM {{ totalValue | number: '0.2-2' }}
+                            <span class="text-xs">
+                                total
+                            </span>
+                        </p>
+                    </td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
 </div>

@@ -31,7 +31,8 @@ INSTALLED_APPS = [
     "django_filters",
 
     "users",
-    "profiles"
+    "profiles",
+    "sheets",
 ]
 
 MIDDLEWARE = [
@@ -161,7 +162,7 @@ if DEBUG:
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
-        "dj_rest_auth.jwt_auth.JWTCookieAuthentication",
+        "auth.utils.JWTCookieAuthentication",
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ],
     "DEFAULT_PARSER_CLASSES": [

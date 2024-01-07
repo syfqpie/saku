@@ -6,18 +6,18 @@ import { AuthResolver } from './core/resolvers/auth.resolver';
 
 const routes: Routes = [
 	{
-		path: '', redirectTo: 'home', pathMatch: 'full'
+		path: '', redirectTo: 'home', pathMatch: 'full',
 	},
 	{
 		path: 'auth',
 		canActivate: [NonAuthGuard],
-		loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+		loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
 	},
 	{
 		path: '',
 		canActivate: [AuthGuard],
 		resolve: [AuthResolver],
-		loadChildren: () => import('./general/general.module').then(m => m.GeneralModule)
+		loadChildren: () => import('./general/general.module').then(m => m.GeneralModule),
 	},
 	{
 		/**
@@ -26,12 +26,12 @@ const routes: Routes = [
 		 * 		- redirect to landing page if not
 		 */
 		
-		path: '**', redirectTo: 'home'
-	}
+		path: '**', redirectTo: 'home',
+	},
 ]
 
 @NgModule({
 	imports: [RouterModule.forRoot(routes)],
-	exports: [RouterModule]
+	exports: [RouterModule],
 })
 export class AppRoutingModule { }

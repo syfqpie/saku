@@ -3,6 +3,7 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { GeneralComponent } from './general.component';
 import { SheetComponent } from './sheet/sheet.component';
+import { UnsavedChangesGuard } from '../core/guards/auth.guard';
 
 export const GeneralRoutes: Routes = [
 	{
@@ -11,12 +12,13 @@ export const GeneralRoutes: Routes = [
 		children: [
 			{
 				path: 'home',
-				component: HomeComponent
+				component: HomeComponent,
 			},
 			{
-				path: 'sheet',
-				component: SheetComponent
-			}
-		]
-	}
+				path: 'sheet/:id',
+				component: SheetComponent,
+				canDeactivate: [UnsavedChangesGuard],
+			},
+		],
+	},
 ]

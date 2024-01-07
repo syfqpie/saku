@@ -11,7 +11,7 @@ import { HttpTokenInterceptor } from './core/interceptors/http-token.interceptor
 
 @NgModule({
 	declarations: [
-		AppComponent
+		AppComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -24,9 +24,9 @@ import { HttpTokenInterceptor } from './core/interceptors/http-token.interceptor
 		{
 			provide: HTTP_INTERCEPTORS,
 			useClass: HttpTokenInterceptor,
-			multi: true
-		}
+			multi: true,
+		},
 	],
-	bootstrap: [AppComponent]
+	bootstrap: [AppComponent],
 })
 export class AppModule { }

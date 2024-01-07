@@ -7,7 +7,7 @@
     @apply font-medium text-center rounded-lg transition-colors;
 }
 .sk-btn.sk-btn-xs {
-	@apply px-3 py-2 text-xs;
+	@apply px-2 py-1 text-xs;
 }
 .sk-btn.sk-btn-sm {
 	@apply px-3 py-2 text-sm;
@@ -31,6 +31,18 @@
     border-zinc-600 enabled:hover:border-cyan-600
 	enabled:hover:text-white enabled:hover:bg-cyan-600/50 disabled:bg-zinc-800/80
 	disabled:border-zinc-600/60 disabled:text-zinc-400/60;
+}
+.sk-sheet {
+	@apply flex;
+}
+.sk-sheet .sk-sheet-view-btn {
+	@apply flex-initial w-full  transition-colors outline-none ring-0 enabled:hover:text-cyan-400
+	disabled:bg-zinc-800/80 disabled:text-zinc-400/60 rounded-s-lg p-2.5 text-start border border-zinc-800;
+}
+.sk-sheet .sk-sheet-rm-btn {
+	@apply transition-colors outline-none ring-0 border-0 bg-zinc-800 text-zinc-400
+	enabled:hover:text-cyan-400 enabled:hover:bg-cyan-600/50 disabled:bg-zinc-800/80
+	disabled:text-zinc-400/60 rounded-e-lg p-2.5;
 }
 
 /* Forms */

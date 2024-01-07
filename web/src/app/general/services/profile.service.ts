@@ -9,9 +9,9 @@ import { Profile } from '../models/profiles.model';
 const BASE_URL = `${environment.baseUrl}${API_VERSION}/${PROFILES_PREFIX}/`
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
-export class ProfilesService {
+export class ProfileService {
 	private profileSubject: BehaviorSubject<Profile | null> = new BehaviorSubject<Profile | null>(null)
 	public profile: Observable<Profile | null>
 

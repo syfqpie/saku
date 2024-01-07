@@ -10,6 +10,7 @@ import { MenuSidebarComponent } from './components/menu-sidebar/menu-sidebar.com
 import { SheetComponent } from './sheet/sheet.component';
 import { UserSidebarComponent } from './components/user-sidebar/user-sidebar.component';
 import { UserAvatarComponent } from './components/user-avatar/user-avatar.component';
+import { SheetItemComponent } from './components/sheet-item/sheet-item.component';
 
 @NgModule({
 	declarations: [
@@ -20,6 +21,7 @@ import { UserAvatarComponent } from './components/user-avatar/user-avatar.compon
 		SheetComponent,
 		UserSidebarComponent,
 		UserAvatarComponent,
+		SheetItemComponent,
 	],
 	imports: [
 		RouterModule.forChild(GeneralRoutes),
