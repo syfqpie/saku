@@ -43,8 +43,22 @@ export class SheetService {
 	 * @returns sheet object
 	 */
 	public getSheet(id: string): Observable<Sheet> {
-		const urlTemp = `${BASE_URL}${id}`
+		const urlTemp = `${BASE_URL}${id}/`
 		return this.http.get<Sheet>(urlTemp)
+			.pipe(map((sheet) => {
+				return sheet
+			}))
+	}
+
+	/**
+	 * Patch sheet with id
+	 * 
+	 * @param id id of sheet
+	 * @returns sheet object
+	 */
+	public patchSheet(id: string, body: object): Observable<Sheet> {
+		const urlTemp = `${BASE_URL}${id}/`
+		return this.http.patch<Sheet>(urlTemp, body)
 			.pipe(map((sheet) => {
 				return sheet
 			}))
@@ -57,7 +71,7 @@ export class SheetService {
 	 * @returns null
 	 */
 	public delete(id: string): Observable<null> {
-		const urlTemp = `${BASE_URL}${id}`
+		const urlTemp = `${BASE_URL}${id}/`
 		return this.http.delete<null>(urlTemp)
 			.pipe(map((response) => {
 				return response
