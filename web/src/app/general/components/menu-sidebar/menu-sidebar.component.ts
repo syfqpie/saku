@@ -9,7 +9,7 @@ interface Menu {
 @Component({
 	selector: 'app-menu-sidebar',
 	templateUrl: './menu-sidebar.component.html',
-	styles: []
+	styles: [],
 })
 export class MenuSidebarComponent {
 	public readonly menus: Menu[] = [
