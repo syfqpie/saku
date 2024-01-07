@@ -43,7 +43,7 @@ export const UnsavedChangesGuard: CanDeactivateFn<SheetComponent> = (
 	if (component.sheet !== undefined && component.isUpdatable()) {
 		const body = component.getUpdateBody()
 
-		return component.sheetSvc.patchSheet(
+		return component.sheetSvc.patch(
 			component.sheet.id, body
 		).pipe(map(() => true))
 	}

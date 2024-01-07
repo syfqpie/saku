@@ -41,7 +41,7 @@ export class SheetService {
 	 * 
 	 * @returns list of sheet objects
 	 */
-	public listSheets(): Observable<Sheet[]> {
+	public list(): Observable<Sheet[]> {
 		const urlTemp = `${BASE_URL}`
 		return this.http.get<Sheet[]>(urlTemp)
 			.pipe(map((sheets) => {
@@ -56,7 +56,7 @@ export class SheetService {
 	 * @param id id of sheet
 	 * @returns sheet object
 	 */
-	public getSheet(id: string): Observable<Sheet> {
+	public get(id: string): Observable<Sheet> {
 		const urlTemp = `${BASE_URL}${id}/`
 		return this.http.get<Sheet>(urlTemp)
 			.pipe(map((sheet) => {
@@ -70,7 +70,7 @@ export class SheetService {
 	 * @param id id of sheet
 	 * @returns sheet object
 	 */
-	public patchSheet(id: string, body: object): Observable<Sheet> {
+	public patch(id: string, body: object): Observable<Sheet> {
 		const urlTemp = `${BASE_URL}${id}/`
 		return this.http.patch<Sheet>(urlTemp, body)
 			.pipe(map((sheet) => {

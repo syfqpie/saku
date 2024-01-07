@@ -40,7 +40,7 @@ export class SheetComponent extends LoadableComponent implements OnDestroy {
 
 	private getData(id: string) {
 		this.isLoading = true
-		this.subscription.add(this.sheetSvc.getSheet(id)
+		this.subscription.add(this.sheetSvc.get(id)
 			.pipe(first())
 			.subscribe({
 				next: (sheet) => {
@@ -129,7 +129,7 @@ export class SheetComponent extends LoadableComponent implements OnDestroy {
 			this.isLoading = true
 
 			this.subscription.add(
-				this.sheetSvc.patchSheet(this.sheet.id, body)
+				this.sheetSvc.patch(this.sheet.id, body)
 					.pipe(first())
 					.subscribe({
 						next: () => {

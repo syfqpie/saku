@@ -33,7 +33,7 @@ export class HomeComponent extends LoadableComponent implements OnInit, OnDestro
 
 	public getData() {
 		this.isLoading = true
-		this.subscription.add(this.sheetSvc.listSheets()
+		this.subscription.add(this.sheetSvc.list()
 			.pipe(first())
 			.subscribe({
 				next: (sheets) => {
