@@ -5,13 +5,14 @@ import { Subscription, first } from 'rxjs';
 
 import { Sheet, SheetItem } from '../models/sheets.model';
 import { SheetService } from '../services/sheet.service';
+import { LoadableComponent } from 'src/app/shared/models/base.model';
 
 @Component({
 	selector: 'app-sheet',
 	templateUrl: './sheet.component.html',
 	styles: [],
 })
-export class SheetComponent implements OnDestroy {
+export class SheetComponent extends LoadableComponent implements OnDestroy {
 	public itemsHasUnsavedChanges = false
 	public sheet?: Sheet
 	private subscription = new Subscription
@@ -27,6 +28,7 @@ export class SheetComponent implements OnDestroy {
 		private activatedRoute: ActivatedRoute,
 		public sheetSvc: SheetService
 	) {
+		super()
 		const id = this.activatedRoute.snapshot.paramMap.get('id')
 		if (id) this.getData(id)
 		else this.setFormData()
@@ -37,12 +39,17 @@ export class SheetComponent implements OnDestroy {
 	}
 
 	private getData(id: string) {
+		this.isLoading = true
 		this.subscription.add(this.sheetSvc.getSheet(id)
 			.pipe(first())
 			.subscribe({
 				next: (sheet) => {
+					this.isLoading = false
 					this.sheet = sheet
 					this.setFormData()
+				},
+				error: () => {
+					this.isLoading = false
 				},
 			}))
 	}
@@ -119,11 +126,19 @@ export class SheetComponent implements OnDestroy {
 	private saveSheet() {
 		if (this.sheet){
 			const body = this.getUpdateBody()
+			this.isLoading = true
 
 			this.subscription.add(
 				this.sheetSvc.patchSheet(this.sheet.id, body)
 					.pipe(first())
-					.subscribe()
+					.subscribe({
+						next: () => {
+							this.isLoading = false
+						},
+						error: () => {
+							this.isLoading = false
+						},
+					})
 			)
 		}
 	}

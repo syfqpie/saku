@@ -19,12 +19,15 @@ import { SheetItem } from '../../models/sheets.model';
 export class ItemListComponent implements OnInit, OnChanges, OnDestroy {
 	@Input()
 		items: SheetItem[] = []
+	
+	@Input()
+		disabled = false
 
 	@Output()
 		formValidEvent = new EventEmitter<SheetItem[]>()
 	
 	form: FormGroup = this.fb.group({
-		items: this.fb.array([])
+		items: this.fb.array([]),
 	})
 
 	subscription: Subscription = new Subscription
@@ -83,9 +86,9 @@ export class ItemListComponent implements OnInit, OnChanges, OnDestroy {
 			item: [item, Validators.required],
 			amount: [amount, Validators.compose([
 				Validators.required,
-				Validators.min(0)
+				Validators.min(0),
 			])],
-			is_checked: [is_checked, Validators.required]
+			is_checked: [is_checked, Validators.required],
 		})
 	}
 

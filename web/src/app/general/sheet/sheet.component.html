@@ -2,8 +2,8 @@
     <div class="mb-4 flex flex-wrap">
         <div class="flex-auto">
             <sk-button
-                [buttonTpl]="backBtnTpl"
                 size="xs"
+                [buttonTpl]="backBtnTpl"
                 (click)="navigateBack()">
                 <ng-template #backBtnTpl>
                     <i class="ri-arrow-left-s-line"></i> Back
@@ -13,8 +13,9 @@
 
         <div class="flex-auto text-end">
             <sk-button
-                [buttonTpl]="saveBtnTpl"
                 size="xs"
+                [buttonTpl]="saveBtnTpl"
+                [disabled]="isLoading"
                 (click)="onSave()">
                 <ng-template #saveBtnTpl>
                     <i class="ri-save-3-line"></i> Save
@@ -33,6 +34,7 @@
     </form>
 
     <app-item-list
+        [disabled]="isLoading"
         [items]="sheet && sheet.items ? sheet.items : []"
         (formValidEvent)="onItemsFormValid($event)">
     </app-item-list>
