@@ -30,7 +30,7 @@ export class SheetComponent extends LoadableComponent implements OnDestroy {
 	) {
 		super()
 		const id = this.activatedRoute.snapshot.paramMap.get('id')
-		if (id) this.getData(id)
+		if (id && id !== 'new') this.getData(id)
 		else this.setFormData()
 	}
 
