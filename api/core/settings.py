@@ -32,6 +32,7 @@ INSTALLED_APPS = [
 
     "users",
     "profiles",
+    "sheets",
 ]
 
 MIDDLEWARE = [
