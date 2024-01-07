@@ -10,7 +10,7 @@ const BASE_URL = `${environment.baseUrl}${API_VERSION}/${SHEETS_PREFIX}/`
 
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class SheetService {
 	private sheetsSubject: BehaviorSubject<Sheet[]> = new BehaviorSubject<Sheet[]>([])

@@ -8,7 +8,7 @@ describe('GeneralComponent', () => {
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			declarations: [GeneralComponent]
+			declarations: [GeneralComponent],
 		});
 		fixture = TestBed.createComponent(GeneralComponent);
 		component = fixture.componentInstance;
