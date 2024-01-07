@@ -7,7 +7,24 @@
 		"indent": [
 			"error",
 			"tab"
-		]
+		],
+		"no-unused-vars": "off",
+		"@typescript-eslint/no-unused-vars": [
+			"error",
+			{
+				"argsIgnorePattern": "^_",
+				"varsIgnorePattern": "^_",
+				"caughtErrorsIgnorePattern": "^_"
+			}
+		],
+		"@typescript-eslint/member-delimiter-style": "warn",
+		"comma-dangle": ["warn", {
+			"arrays": "always-multiline",
+			"objects": "always-multiline",
+			"imports": "never",
+			"exports": "never",
+			"functions": "never"
+		}]
 	},
 	"overrides": [
 		{
