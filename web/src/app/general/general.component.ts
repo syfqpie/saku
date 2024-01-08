@@ -4,7 +4,11 @@ import { Component } from '@angular/core';
 	selector: 'app-general',
 	template: `
 		<div
-			class="grid grid-cols-5 min-h-screen bg-zinc-900 text-zinc-200">
+			class="grid grid-cols-5 md:min-h-screen md:max-h-none
+			bg-zinc-900 text-zinc-200 overflow-hidden"
+			[class]="{
+				'max-h-screen': isMobileMenuOpen
+			}">
 			<div
 				class="hidden md:block col-span-1 border-r
 				border-r-zinc-800 sticky h-screen top-0">
