@@ -8,7 +8,7 @@ import { ProfileService } from '../../services/profile.service';
 @Component({
 	selector: 'app-user-sidebar',
 	templateUrl: './user-sidebar.component.html',
-	styles: []
+	styles: [],
 })
 export class UserSidebarComponent implements OnInit, OnDestroy {
 	public profile: Profile | null = null

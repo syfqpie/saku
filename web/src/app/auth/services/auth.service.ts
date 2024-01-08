@@ -11,7 +11,7 @@ const BASE_URL = `${environment.baseUrl}${AUTH_PREFIX}/`
 
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class AuthService {
 

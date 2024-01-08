@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Subscription, first } from 'rxjs';
 
@@ -36,11 +37,11 @@ export class HomeComponent extends LoadableComponent implements OnInit, OnDestro
 		this.subscription.add(this.sheetSvc.list()
 			.pipe(first())
 			.subscribe({
-				next: (sheets) => {
+				next: (sheets: Sheet[]) => {
 					this.sheets = sheets
 					this.isLoading = false
 				},
-				error: (_error) => {
+				error: (_error: HttpErrorResponse) => {
 					this.isLoading = false
 				},
 			}))

@@ -10,8 +10,7 @@ import { AuthFormMessage } from '../auth.constant';
 @Component({
 	selector: 'app-register',
 	templateUrl: './register.component.html',
-	styles: [
-	]
+	styles: [],
 })
 export class RegisterComponent extends LoadableComponent implements OnInit, OnDestroy {
 	redirectTimeout: ReturnType<typeof setTimeout> | null = null
@@ -20,13 +19,13 @@ export class RegisterComponent extends LoadableComponent implements OnInit, OnDe
 		username: new FormControl(null),
 		email: new FormControl(null),
 		password1: new FormControl(null),
-		password2: new FormControl(null)
+		password2: new FormControl(null),
 	})
 	formMessages = {
 		username: AuthFormMessage.username,
 		email: AuthFormMessage.email,
 		password1: AuthFormMessage.password,
-		password2: AuthFormMessage.confirmPassword
+		password2: AuthFormMessage.confirmPassword,
 	}
 
 	subscription = new Subscription()
@@ -51,30 +50,30 @@ export class RegisterComponent extends LoadableComponent implements OnInit, OnDe
 		this.form = this.fb.group({
 			username: new FormControl(null, {
 				validators: [
-					Validators.required
+					Validators.required,
 				],
-				updateOn: 'blur'
+				updateOn: 'blur',
 			}),
 			email: new FormControl(null, {
 				validators: [
-					Validators.email
+					Validators.email,
 				],
-				updateOn: 'blur'
+				updateOn: 'blur',
 			}),
 			password1: new FormControl(null, {
 				validators: [
 					Validators.required,
-					Validators.minLength(8)
+					Validators.minLength(8),
 				],
-				updateOn: 'blur'
+				updateOn: 'blur',
 			}),
 			password2: new FormControl(null, {
 				validators: [
 					Validators.required,
-					Validators.minLength(8)
+					Validators.minLength(8),
 				],
-				updateOn: 'blur'
-			})
+				updateOn: 'blur',
+			}),
 		})
 	}
 
@@ -113,7 +112,7 @@ export class RegisterComponent extends LoadableComponent implements OnInit, OnDe
 							this.router.navigate(['/auth', 'login'])
 						}, 500
 					)
-				}
+				},
 			}))
 	}
 

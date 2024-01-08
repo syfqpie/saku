@@ -4,7 +4,7 @@
  * @category Constant
  */
 export const HttpErrorCode = {
-	'TOKEN_NOT_VALID': 'token_not_valid'
+	'TOKEN_NOT_VALID': 'token_not_valid',
 }
 
 /**
@@ -13,7 +13,7 @@ export const HttpErrorCode = {
  * @category Constant
  */
 export const HttpErrorDetail = {
-	'NO_PERMISSION': 'You do not have permission to perform this action.'
+	'NO_PERMISSION': 'You do not have permission to perform this action.',
 }
 
 /**
@@ -27,7 +27,7 @@ export const HttpHeaderConfig = {
 	'ACCEPT_VALUE': '*/*',
 	'TOKEN_PREFIX': 'Bearer',
 	'CONTENT_TYPE': 'Content-Type',
-	'CONTENT_TYPE_JSON': 'application/json'
+	'CONTENT_TYPE_JSON': 'application/json',
 }
 
 /**
@@ -43,15 +43,15 @@ export const HttpMethod = {
 	'DESTROY': 'DESTROY',
 	'HEAD': 'HEAD',
 	'JSONP': 'JSONP',
-	'OPTIONS': 'OPTIONS'
+	'OPTIONS': 'OPTIONS',
 }
 
 export const BasicResponseKey = {
-	NON_FIELD_ERRORS: 'nonFieldErrors'
+	NON_FIELD_ERRORS: 'nonFieldErrors',
 }
 
 export const JsonActionTypes = [HttpMethod.POST, HttpMethod.PUT, HttpMethod.PATCH]
 
 export const ApiErrorCode =  {
-	USER_NOT_FOUND: 'user_not_found'
+	USER_NOT_FOUND: 'user_not_found',
 }

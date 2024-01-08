@@ -14,7 +14,7 @@ import { InputDirective } from './directives/forms/input.directive';
 		InputDirective,
 	],
 	imports: [
-		CommonModule
+		CommonModule,
 	],
 	exports: [
 		CommonModule,
@@ -24,6 +24,6 @@ import { InputDirective } from './directives/forms/input.directive';
 		ButtonComponent,
 		FormMessageComponent,
 		InputDirective,
-	]
+	],
 })
 export class SharedModule { }

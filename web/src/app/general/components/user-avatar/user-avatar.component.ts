@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 @Component({
 	selector: 'app-user-avatar',
 	templateUrl: './user-avatar.component.html',
-	styles: []
+	styles: [],
 })
 export class UserAvatarComponent {
 

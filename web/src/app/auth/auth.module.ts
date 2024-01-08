@@ -18,11 +18,11 @@ import { VerificationComponent } from './verification/verification.component';
 		LoginComponent,
 		RegisterComponent,
 		ResetPasswordComponent,
-		VerificationComponent
+		VerificationComponent,
 	],
 	imports: [
 		RouterModule.forChild(AuthRoutes),
-		SharedModule
-	]
+		SharedModule,
+	],
 })
 export class AuthModule { }

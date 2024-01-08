@@ -9,15 +9,15 @@ import { AuthService } from '../services/auth.service';
 @Component({
 	selector: 'app-forgot',
 	templateUrl: './forgot.component.html',
-	styles: []
+	styles: [],
 })
 export class ForgotComponent extends LoadableComponent implements OnInit, OnDestroy {
 
 	form: FormGroup = new FormGroup({
-		email: new FormControl(null)
+		email: new FormControl(null),
 	})
 	formMessages = {
-		email: AuthFormMessage.email
+		email: AuthFormMessage.email,
 	}
 	hasRequested = false
 
@@ -41,10 +41,10 @@ export class ForgotComponent extends LoadableComponent implements OnInit, OnDest
 			email: new FormControl(null, {
 				validators: [
 					Validators.required,
-					Validators.email
+					Validators.email,
 				],
-				updateOn: 'blur'
-			})
+				updateOn: 'blur',
+			}),
 		})
 	}
 
@@ -61,7 +61,7 @@ export class ForgotComponent extends LoadableComponent implements OnInit, OnDest
 				error: () => {
 					this.toggleLoader()
 					this.toggleForm()
-				}
+				},
 			}))
 	}
 

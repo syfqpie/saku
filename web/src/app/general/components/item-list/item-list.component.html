@@ -2,13 +2,13 @@
     <table class="w-full text-sm table-fixed text-zinc-400">
         <thead class="text-xs text-left border-b border-dashed border-zinc-400/10">
             <tr>
-                <th scope="col" class="ps-7 py-2 font-normal w-[75%]">
+                <th scope="col" class="ps-7 py-2 font-normal w-[65%] md:w-[75%]">
                     Item
                 </th>
-                <th scope="col" class="px-1 py-2 font-normal w-[16.67%]">
+                <th scope="col" class="px-1 py-2 font-normal w-[25.67%] md:w-[16.67%]">
                     Amount
                 </th>
-                <th scope="col" class="px-6 py-2 font-normal w-[8.33%]"></th>
+                <th scope="col" class="px-6 py-2 font-normal w-[9.67%] md:w-[8.33%]"></th>
             </tr>
         </thead>
 
@@ -32,13 +32,21 @@
                                 placeholder-zinc-500/50 w-full text-sm" />
                         </th>
                         <td class="ps-1">
-                            <input
-                                type="number"
-                                formControlName="amount"
-                                placeholder="Enter amount"
-                                class="focus:outline-none border-none focus:ring-0
-                                focus:outline-offset-0 p-0 bg-transparent caret-cyan-400
-                                placeholder-zinc-500/50 w-full text-sm" />
+                            <div class="relative">
+                                <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none">
+                                    <p class="mb-0 text-sm text-zinc-500/50">
+                                        RM
+                                    </p>
+                                </div>
+
+                                <input
+                                    type="number"
+                                    formControlName="amount"
+                                    placeholder="Enter amount"
+                                    class="ps-6 focus:outline-none border-none focus:ring-0
+                                    focus:outline-offset-0 p-0 bg-transparent caret-cyan-400
+                                    placeholder-zinc-500/50 w-full text-sm" />
+                            </div>
                         </td>
                         <td class="text-end">
                             <button
