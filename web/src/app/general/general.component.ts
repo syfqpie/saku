@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
 	template: `
 		<div
 			class="grid grid-cols-5 md:min-h-screen md:max-h-none
-			bg-zinc-900 text-zinc-200 overflow-hidden"
+			bg-zinc-900 text-zinc-200 overflow-hidden relative"
 			[class]="{
 				'max-h-screen': isMobileMenuOpen
 			}">
@@ -15,7 +15,9 @@ import { Component } from '@angular/core';
 				<app-user-sidebar></app-user-sidebar>
 			</div>
 
-			<div class="col-span-5 md:col-span-3 p-6">
+			<div
+				class="col-span-5 md:col-span-3 p-6
+				h-screen overflow-y-auto pb-16 md:pb-0">
 				<router-outlet></router-outlet>
 			</div>
 
