@@ -5,8 +5,8 @@ import { HttpTokenInterceptor } from './http-token.interceptor';
 describe('HttpTokenInterceptor', () => {
 	beforeEach(() => TestBed.configureTestingModule({
 		providers: [
-			HttpTokenInterceptor
-		]
+			HttpTokenInterceptor,
+		],
 	}));
 
 	it('should be created', () => {

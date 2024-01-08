@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
 	selector: 'app-reset-password',
 	templateUrl: './reset-password.component.html',
-	styles: []
+	styles: [],
 })
 export class ResetPasswordComponent extends LoadableComponent implements OnDestroy {
 	redirectTimeout: ReturnType<typeof setTimeout> | null = null
@@ -18,11 +18,11 @@ export class ResetPasswordComponent extends LoadableComponent implements OnDestr
 		uid: new FormControl(null),
 		token: new FormControl(null),
 		new_password1: new FormControl(null),
-		new_password2: new FormControl(null)
+		new_password2: new FormControl(null),
 	})
 	formMessages = {
 		new_password1: AuthFormMessage.password,
-		new_password2: AuthFormMessage.confirmPassword
+		new_password2: AuthFormMessage.confirmPassword,
 	}
 
 	subscription = new Subscription()
@@ -52,28 +52,28 @@ export class ResetPasswordComponent extends LoadableComponent implements OnDestr
 		this.form = this.fb.group({
 			uid: new FormControl(uid, {
 				validators: [
-					Validators.required
+					Validators.required,
 				],
-				updateOn: 'blur'
+				updateOn: 'blur',
 			}),
 			token: new FormControl(token, {
 				validators: [
-					Validators.required
+					Validators.required,
 				],
-				updateOn: 'blur'
+				updateOn: 'blur',
 			}),
 			new_password1: new FormControl(null, {
 				validators: [
-					Validators.required
+					Validators.required,
 				],
-				updateOn: 'blur'
+				updateOn: 'blur',
 			}),
 			new_password2: new FormControl(null, {
 				validators: [
-					Validators.required
+					Validators.required,
 				],
-				updateOn: 'blur'
-			})
+				updateOn: 'blur',
+			}),
 		})
 	}
 
@@ -96,7 +96,7 @@ export class ResetPasswordComponent extends LoadableComponent implements OnDestr
 							this.router.navigate(['/home'])
 						}, 500
 					)
-				}
+				},
 			}))
 	}
 

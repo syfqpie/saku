@@ -49,7 +49,7 @@ export class HttpTokenInterceptor implements HttpInterceptor {
 		}
 
 		return req.clone({
-			withCredentials: true
+			withCredentials: true,
 		})
 	}
 

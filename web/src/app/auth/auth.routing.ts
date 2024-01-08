@@ -14,34 +14,34 @@ export const AuthRoutes: Routes = [
 		children: [
 			{
 				path: 'forgot-password',
-				component: ForgotComponent
+				component: ForgotComponent,
 			},
 			{
 				path: 'login',
-				component: LoginComponent
+				component: LoginComponent,
 			},
 			{
 				path: 'register',
 				component: RegisterComponent,
 				data: {
-					title: 'Registration'
-				}
+					title: 'Registration',
+				},
 			},
 			{
 				path: 'reset-password',
-				component: ResetPasswordComponent
+				component: ResetPasswordComponent,
 			},
 			{
 				path: 'verify-account',
 				component: VerificationComponent,
 				data: {
-					title: 'Verify account'
-				}
+					title: 'Verify account',
+				},
 			},
 			{
 				path: '**',
-				redirectTo: 'login'
-			}
-		]
-	}
+				redirectTo: 'login',
+			},
+		],
+	},
 ]

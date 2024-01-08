@@ -9,13 +9,13 @@ import { AuthService } from '../services/auth.service';
 @Component({
 	selector: 'app-verification',
 	templateUrl: './verification.component.html',
-	styles: []
+	styles: [],
 })
 export class VerificationComponent extends LoadableComponent implements OnDestroy {
 	redirectTimeout: ReturnType<typeof setTimeout> | null = null
 
 	form: FormGroup = new FormGroup({
-		key: new FormControl(null)
+		key: new FormControl(null),
 	})
 	hasError = false
 	subscription = new Subscription()
@@ -40,10 +40,10 @@ export class VerificationComponent extends LoadableComponent implements OnDestro
 		this.form = this.fb.group({
 			key: new FormControl(key, {
 				validators: [
-					Validators.required
+					Validators.required,
 				],
-				updateOn: 'blur'
-			})
+				updateOn: 'blur',
+			}),
 		})
 
 		this.doPreVerify()
@@ -71,7 +71,7 @@ export class VerificationComponent extends LoadableComponent implements OnDestro
 							this.router.navigate(['/auth', 'login'])
 						}, 500
 					)
-				}
+				},
 			}))
 	}
 

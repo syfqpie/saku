@@ -10,7 +10,7 @@ import { AuthFormMessage } from '../auth.constant';
 @Component({
 	selector: 'app-login',
 	templateUrl: './login.component.html',
-	styles: []
+	styles: [],
 })
 export class LoginComponent extends LoadableComponent implements OnInit, OnDestroy {
 	returnUrl: string | null = null
@@ -18,11 +18,11 @@ export class LoginComponent extends LoadableComponent implements OnInit, OnDestr
 
 	form: FormGroup = new FormGroup({
 		username: new FormControl(null),
-		password: new FormControl(null)
+		password: new FormControl(null),
 	})
 	formMessages = {
 		username: AuthFormMessage.username,
-		password: AuthFormMessage.password
+		password: AuthFormMessage.password,
 	}
 
 	subscription = new Subscription()
@@ -49,17 +49,17 @@ export class LoginComponent extends LoadableComponent implements OnInit, OnDestr
 		this.form = this.fb.group({
 			username: new FormControl(null, {
 				validators: [
-					Validators.required
+					Validators.required,
 				],
-				updateOn: 'blur'
+				updateOn: 'blur',
 			}),
 			password: new FormControl(null, {
 				validators: [
 					Validators.required,
-					Validators.minLength(8)
+					Validators.minLength(8),
 				],
-				updateOn: 'blur'
-			})
+				updateOn: 'blur',
+			}),
 		})
 	}
 
@@ -87,7 +87,7 @@ export class LoginComponent extends LoadableComponent implements OnInit, OnDestr
 							this.router.navigate(['/home'])
 						}, 500
 					)
-				}
+				},
 			}))
 	}
 
