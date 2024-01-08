@@ -2,17 +2,17 @@ import { animate, animateChild, query, style, transition, trigger } from '@angul
 
 export const EnterExitLeftTrigger = trigger('enterExitLeft', [
 	transition(':enter', [
-		style({ opacity: 0, transform: 'translateX(-100%)' }),
+		style({ transform: 'translateX(-100%)' }),
 		animate(
-			'300ms ease-in',
-			style({ opacity: 1, transform: 'translateX(0)' })
+			'250ms ease-in',
+			style({ transform: 'translateX(0)' })
 		),
 	]),
 	transition(':leave', [
-		style({ opacity: 1, transform: 'translateX(0)' }),
+		style({ transform: 'translateX(0)' }),
 		animate(
-			'300ms ease-in',
-			style({ opacity: 0, transform: 'translateX(-100%)' })
+			'250ms ease-in',
+			style({ transform: 'translateX(-100%)' })
 		),
 	]),
 ])
